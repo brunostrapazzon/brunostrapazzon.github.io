@@ -319,6 +319,19 @@ section h2 { font-size: clamp(28px, 4.2vw, 40px); letter-spacing: -0.025em; line
 }
 @media (prefers-reduced-motion: reduce) { .project .links a, .inline-link { transition: none; } }
 
+/* Formação */
+.strong { color: var(--text); font-weight: var(--font-weight-semibold); }
+.edu { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 36px; }
+@media (min-width: 880px) { .edu { grid-template-columns: 1.1fr 1fr; gap: 16px; } }
+.edu-main, .edu-list { background: var(--surface); border-radius: 16px; padding: 24px; box-shadow: 0 0 0 1px var(--line); }
+.edu-main { box-shadow: 0 0 0 1px var(--line), inset 3px 0 0 var(--blue-solid); }
+.edu-school { font-size: 19px; font-weight: var(--font-weight-semibold); letter-spacing: -0.01em; }
+.edu-when { font-size: 14px; color: var(--blue); margin-top: 4px; }
+.edu-text { color: var(--text-2); margin-top: 14px; font-size: 16px; }
+.edu-list { list-style: none; margin: 0; display: grid; gap: 14px; }
+.edu-list span { font-size: 13px; color: var(--text-3); }
+.edu-list p { font-size: 15px; color: var(--text-2); margin-top: 2px; }
+
 /* Experiência */
 .job { margin-top: 36px; display: grid; grid-template-columns: 1fr; gap: 8px 32px; }
 @media (min-width: 760px) { .job { grid-template-columns: 240px 1fr; } }
@@ -372,6 +385,7 @@ footer p + p { margin-top: 8px; }
     <div class="top-right">
       <nav class="nav" aria-label="Seções">
         <a href="#projetos">Projetos</a>
+        <a href="#formacao" class="hide-s">Formação</a>
         <a href="#experiencia" class="hide-s">Experiência</a>
         <a href="#contato" class="hide-s">Contato</a>
       </nav>
@@ -389,7 +403,7 @@ footer p + p { margin-top: 8px; }
       <div>
         <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span>Automação e IA aplicada · Python</p>
         <h1>Automação e IA <span class="accent">que dá para conferir.</span></h1>
-        <p class="lede">Estudo Ciência da Computação na FIAP e trabalho com suporte de TI desde 2023. Nos meus projetos, a IA entra onde ajuda; onde ela poderia errar, entram regras, testes e métricas. E quando o sistema não sabe, ele diz que não sabe.</p>
+        <p class="lede">Estudo Ciência da Computação na <strong class="strong">FIAP</strong>, como bolsista pelo ENEM, e trabalho com suporte de TI desde 2023. Nos meus projetos, a IA entra onde ajuda; onde ela poderia errar, entram regras, testes e métricas. E quando o sistema não sabe, ele diz que não sabe.</p>
         <div class="actions">
           <a class="btn btn-primary" href="#projetos">Ver os projetos</a>
           <a class="btn btn-ghost" href="https://www.linkedin.com/in/bruno-trevizan-strapazzon-7a7b24367" rel="noopener">LinkedIn</a>
@@ -566,6 +580,25 @@ footer p + p { margin-top: 8px; }
           </div>
         </li>
       </ul>
+    </div>
+  </section>
+
+  <section id="formacao">
+    <div class="wrap">
+      <p class="kicker">Formação</p>
+      <h2>Ciência da Computação na FIAP</h2>
+      <div class="edu">
+        <div class="edu-main">
+          <p class="edu-school">FIAP · Bacharelado em Ciência da Computação</p>
+          <p class="edu-when">2026 – 2029 (previsão) · online · bolsista pelo ENEM</p>
+          <p class="edu-text">Os projetos em equipe desta página saíram do curso: o Citizen Assist AI na Global Solution, o EV ChargeOps no Enterprise Challenge com a GoodWe, e os sistemas de monitoramento ARES-VII e SCIC.</p>
+        </div>
+        <ul class="edu-list">
+          <li><span>Certificações</span><p>Lógica de programação (FIAP, 2026) · Comunicação (FIAP, 2026) · Começando em Programação (Alura, 2026)</p></li>
+          <li><span>Idiomas</span><p>Português nativo · Inglês B2 (TOEFL ITP, 2024)</p></li>
+          <li><span>Prêmios</span><p>Duas medalhas de bronze na OBMEP</p></li>
+        </ul>
+      </div>
     </div>
   </section>
 
