@@ -215,6 +215,31 @@ section h2 { font-size: clamp(28px, 4.2vw, 40px); letter-spacing: -0.025em; line
 .stats-2 .stat:first-child b { color: var(--blue); }
 .case-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
 
+/* Prints */
+.shots { display: grid; grid-template-columns: 1fr; gap: 28px; margin-top: 56px; align-items: start; }
+@media (min-width: 880px) { .shots { grid-template-columns: 1fr 1fr; gap: 32px; } }
+.shot { margin: 0; }
+.shot-frame {
+  display: block; border-radius: 14px; overflow: hidden; background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line-strong), 0 24px 60px -30px rgba(0, 0, 0, 0.6);
+  transition: transform 200ms var(--ease-out-quart), box-shadow 200ms ease;
+}
+.shot-frame:active { transform: scale(0.99); }
+@media (hover: hover) and (pointer: fine) {
+  .shot-frame:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--blue-solid), 0 28px 70px -30px var(--glow); }
+}
+@media (prefers-reduced-motion: reduce) { .shot-frame { transition: none; } }
+.shot-bar {
+  display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 12px;
+  background: var(--surface-2); box-shadow: inset 0 -1px 0 var(--line); user-select: none;
+}
+.shot-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--line-strong); }
+.shot-bar span { margin-left: 8px; font-size: 12px; color: var(--text-3); font-family: "IBM Plex Mono", ui-monospace, monospace; }
+.shot img { display: block; width: 100%; height: auto; }
+.shot figcaption { margin-top: 12px; font-size: 15px; color: var(--text-2); }
+.shot figcaption b { color: var(--text); font-weight: var(--font-weight-medium); }
+.shots-note { margin-top: 16px; font-size: 13px; color: var(--text-3); }
+
 /* Demonstração */
 .demo {
   background: var(--surface); border-radius: 18px; padding: 20px;
@@ -429,6 +454,23 @@ footer p + p { margin-top: 8px; }
           <p class="demo-foot">Simplificação das regras reais do projeto. A explicação acima é o texto pronto; com a IA ligada, ela reescreve só esse texto, nunca o diagnóstico.</p>
         </div>
       </div>
+      <div class="shots">
+        <figure class="shot">
+          <a class="shot-frame" href="img/netdoctor-cliente-1400.webp" aria-label="Abrir o print do relatório do cliente em tamanho maior">
+            <span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>relatorio.html</span></span>
+            <img src="img/netdoctor-cliente-800.webp" srcset="img/netdoctor-cliente-800.webp 800w, img/netdoctor-cliente-1400.webp 1400w" sizes="(min-width: 880px) 520px, 100vw" width="800" height="656" loading="lazy" decoding="async" alt="Relatório do NetDoctor: Wi-Fi fraco, força do sinal de 30%, três ações recomendadas e a tabela de achados com o código WIFI_WEAK">
+          </a>
+          <figcaption><b>Relatório do cliente.</b> A causa em uma frase, o número que a sustenta e o que fazer, em português simples.</figcaption>
+        </figure>
+        <figure class="shot">
+          <a class="shot-frame" href="img/netdoctor-laudo-1400.webp" aria-label="Abrir o print do laudo técnico em tamanho maior">
+            <span class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>laudo.html</span></span>
+            <img src="img/netdoctor-laudo-800.webp" srcset="img/netdoctor-laudo-800.webp 800w, img/netdoctor-laudo-1400.webp 1400w" sizes="(min-width: 880px) 520px, 100vw" width="800" height="876" loading="lazy" decoding="async" alt="Laudo técnico do NetDoctor: canal 6 congestionado, utilização de 70%, perda a partir da rede da operadora e aparelhos na rede, cada um com recomendação e código">
+          </a>
+          <figcaption><b>Laudo técnico para o suporte.</b> Canal congestionado, perda que começa na operadora e aparelhos na rede, cada achado com recomendação e código.</figcaption>
+        </figure>
+      </div>
+      <p class="shots-note">Prints gerados com os dados de teste do projeto, não de uma rede real.</p>
     </div>
   </section>
 
@@ -478,7 +520,7 @@ footer p + p { margin-top: 8px; }
         <li class="project">
           <div>
             <h3>EV ChargeOps</h3>
-            <p class="meta">Protótipo · equipe</p>
+            <p class="meta">FIAP Global Solution · 2026 · equipe</p>
           </div>
           <div>
             <p>Mede, valida e divide a conta de recarga de carros elétricos em condomínios. Lê o carregador via Modbus, associa a sessão à unidade por RFID e usa um modelo de detecção de anomalias (Isolation Forest) para barrar medições suspeitas antes da cobrança. Testado com dados simulados.</p>
@@ -487,7 +529,7 @@ footer p + p { margin-top: 8px; }
         <li class="project">
           <div>
             <h3>Monitoramento ARES-VII</h3>
-            <p class="meta">FIAP Global Solution · 2026 · equipe de 3</p>
+            <p class="meta">FIAP · 2026 · equipe de 3</p>
           </div>
           <div>
             <p>Lê a telemetria de uma missão simulada em Marte, prioriza alertas com fila e pilha e prevê a reserva de energia com uma regressão linear feita à mão, em Python puro.</p>
