@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bruno Strapazzon · Automation and applied AI</title>
+<meta name="description" content="Computer Science student at FIAP, Brazil. I build automation and AI systems you can check: rules and tests where AI could be wrong, metrics to know when it is right.">
+<link rel="canonical" href="https://brunostrapazzon.github.io/en/">
+<link rel="alternate" hreflang="pt-BR" href="https://brunostrapazzon.github.io/">
+<link rel="alternate" hreflang="en" href="https://brunostrapazzon.github.io/en/">
+<meta property="og:title" content="Bruno Strapazzon · Automation and applied AI">
+<meta property="og:description" content="Automation and AI you can check. Python, language models, evaluation and tests.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://brunostrapazzon.github.io/en/">
+<meta property="og:image" content="https://brunostrapazzon.github.io/img/bruno-960.webp">
+<meta name="theme-color" content="#0d1119">
+<meta name="twitter:card" content="summary">
+<script>
+  // Theme before first paint: no flash. Dark is the default.
+  (function () {
+    var t = "dark";
+    try { t = localStorage.getItem("theme") || "dark"; } catch (e) {}
+    document.documentElement.setAttribute("data-theme", t);
+  })();
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231f3358'/%3E%3Cpath d='M9 4v24' stroke='%238ec0de' stroke-width='2' stroke-dasharray='3 3'/%3E%3Ctext x='19' y='21.5' font-family='Georgia,serif' font-size='14' text-anchor='middle' fill='%23f4efe6'%3EB%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="image" type="image/webp" href="../img/bruno-960.webp" imagesrcset="../img/bruno-480.webp 480w, ../img/bruno-960.webp 960w" imagesizes="(min-width: 1024px) 276px, (min-width: 720px) 196px, 114px">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400&family=Marcellus&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="rail">
+  <span class="stitch-y" aria-hidden="true"></span>
+  <span class="stitch-x" aria-hidden="true"></span>
+  <a class="brand" href="#start">
+    <span class="brand-name">Bruno Strapazzon</span>
+    <span class="brand-role">Automation and applied AI</span>
+  </a>
+  <nav aria-label="Contents">
+    <ul class="index">
+      <li><a href="#start">Start</a></li>
+      <li><a href="#netdoctor">NetDoctor</a></li>
+      <li><a href="#citizen">Citizen Assist AI</a></li>
+      <li><a href="#projects">More projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="rail-tools">
+    <a class="tool-btn bar-contact" href="#contact">Contact</a>
+    <a class="tool-btn" href="../" hreflang="pt-BR" lang="pt-BR" aria-label="Ler em português">PT</a>
+    <button class="tool-btn" id="theme-toggle" type="button" aria-label="Switch to light theme">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main class="pages" id="content">
+
+    <section class="opening" id="start" aria-labelledby="title">
+      <div class="wrap title-page">
+      <div>
+        <h1 id="title" class="enter">Automation and AI <span class="thread">you can check.</span></h1>
+        <div class="knot enter enter-2" aria-hidden="true">
+          <hr class="tooled">
+          <svg viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 8h9M24 8h9"/><ellipse cx="17" cy="8" rx="6" ry="4.5"/><path d="M11 3.5c3 2 9 7 12 9M11 12.5c3-2 9-7 12-9"/></svg>
+          <hr class="tooled">
+        </div>
+        <p class="lede enter enter-2">I study Computer Science at <strong>FIAP</strong> in Brazil on a scholarship earned through ENEM, the national university entrance exam, and I have worked in IT support since 2023. In my projects, AI goes where it helps; where it could be wrong, rules, tests and metrics come in. And when the system doesn’t know, it says it doesn’t know.</p>
+        <p class="avail enter enter-3">Available for remote roles</p>
+        <div class="actions enter enter-3">
+          <a class="btn btn-primary" href="mailto:strapazzonbruno@gmail.com">Send me an e-mail</a>
+          <a class="btn btn-paper" href="https://wa.me/5554999838415" rel="noopener">Message on WhatsApp</a>
+        </div>
+        <p class="also enter enter-3">Also on <a class="link" href="https://www.linkedin.com/in/bruno-trevizan-strapazzon-7a7b24367" rel="noopener">LinkedIn</a> and <a class="link" href="https://github.com/brunostrapazzon" rel="noopener">GitHub</a>.</p>
+      </div>
+      <figure class="plate portrait enter enter-2">
+        <img src="../img/bruno-960.webp" srcset="../img/bruno-480.webp 480w, ../img/bruno-960.webp 960w" sizes="(min-width: 1024px) 276px, (min-width: 720px) 196px, 114px" width="360" height="450" alt="Bruno Strapazzon in a burgundy suit and light tie" fetchpriority="high" decoding="async">
+        <span class="corner tl" aria-hidden="true"></span><span class="corner tr" aria-hidden="true"></span><span class="corner bl" aria-hidden="true"></span><span class="corner br" aria-hidden="true"></span>
+      </figure>
+      </div>
+    </section>
+
+    <section class="signature" id="netdoctor" aria-labelledby="nd-title">
+      <div class="wrap">
+      <hr class="tooled">
+      <h2 id="nd-title">NetDoctor: rules make the diagnosis, AI only explains it</h2>
+      <p class="meta">Project 1 · automation with a language model</p>
+      <p class="intro">It came from my day-to-day in support: most “my internet isn’t working” tickets are weak Wi-Fi, a frozen router or DNS, and finding that out took a technician. NetDoctor automates this triage on Windows in about 10 seconds and explains the cause in plain Portuguese.</p>
+
+      <div class="case">
+        <div>
+          <ul class="notes">
+            <li>
+              <h3>The AI decides nothing</h3>
+              <p>The diagnosis comes from deterministic rules: the first test that fails is the cause. The language model (Groq, OpenAI or local Ollama) only rewrites the explanation. The same problem always gives the same result.</p>
+            </li>
+            <li>
+              <h3>The AI’s answer is validated</h3>
+              <p>It must return one sentence and 1 to 3 actions, within the length limit. If it breaks the format, takes too long or fails, the app uses the built-in text, without showing the user an error.</p>
+            </li>
+            <li>
+              <h3>Privacy enforced by tests</h3>
+              <p>The model receives only a closed list of fields: problem code, severity and numbers. Network name, IPs, MAC and computer name never leave the machine, and there are tests that break if that changes.</p>
+            </li>
+            <li>
+              <h3>End-to-end automation</h3>
+              <p>It reads Windows command output in Portuguese and in English, runs the tests in parallel and publishes itself: GitHub Actions tests it, builds the executable and creates the release.</p>
+            </li>
+          </ul>
+
+          <div class="figures">
+            <div><b>279</b><span>automated tests</span></div>
+            <div><b>3</b><span>AI providers, by configuration only</span></div>
+            <div><b>0</b><span>network data sent to the AI</span></div>
+          </div>
+
+          <div class="links">
+            <a class="btn btn-primary" href="https://github.com/brunostrapazzon/NetDoctor/releases/latest" rel="noopener">Download for Windows</a>
+            <a class="btn btn-paper" href="https://github.com/brunostrapazzon/NetDoctor" rel="noopener">Code on GitHub</a>
+          </div>
+        </div>
+
+        <div class="demo" role="group" aria-labelledby="demo-title">
+          <div class="demo-head">
+            <h3 id="demo-title">The rules, step by step</h3>
+            <span class="tag">simulation</span>
+          </div>
+          <p class="demo-q" id="demo-q">Pick a problem and watch the thread pass through the tests:</p>
+          <fieldset class="scenarios" aria-labelledby="demo-q">
+            <label><input type="radio" name="sc" value="ok" checked>All good</label>
+            <label><input type="radio" name="sc" value="wifi">Weak Wi-Fi</label>
+            <label><input type="radio" name="sc" value="router">Frozen router</label>
+            <label><input type="radio" name="sc" value="isp">Provider down</label>
+            <label><input type="radio" name="sc" value="dns">DNS</label>
+          </fieldset>
+
+          <ol class="chain" id="chain">
+            <li class="step" data-key="link"><span class="what">Computer connected<small>cable or Wi-Fi on</small></span><span class="status"></span></li>
+            <li class="step" data-key="dhcp"><span class="what">Address received<small>the router handed out an IP</small></span><span class="status"></span></li>
+            <li class="step" data-key="router"><span class="what">Router responds<small>ping to the router</small></span><span class="status"></span></li>
+            <li class="step" data-key="isp"><span class="what">Provider’s internet<small>ping outside the home</small></span><span class="status"></span></li>
+            <li class="step" data-key="dns"><span class="what">Site names<small>DNS translates addresses</small></span><span class="status"></span></li>
+            <li class="step" data-key="signal"><span class="what">Wi-Fi signal<small>strength and interference</small></span><span class="status"></span></li>
+          </ol>
+
+          <div class="verdict" id="verdict" aria-live="polite"></div>
+          <p class="demo-foot">A simplification of the project’s real rules. The explanation above is the built-in text; with the AI on, it rewrites only that text, never the diagnosis.</p>
+        </div>
+      </div>
+
+      <div class="plates">
+        <div>
+          <div class="plate-label">
+            <h3>Client report <span class="mono">relatorio.html</span></h3>
+            <p>The cause in one sentence, the number behind it and what to do, in plain Portuguese.</p>
+          </div>
+          <a class="plate shot" href="../img/netdoctor-cliente-1400.webp" aria-label="Open the client report screenshot at full size">
+            <span class="plate-inner"><img src="../img/netdoctor-cliente-800.webp" srcset="../img/netdoctor-cliente-800.webp 800w, ../img/netdoctor-cliente-1400.webp 1400w" sizes="(min-width: 1024px) 420px, (min-width: 720px) 45vw, 92vw" width="800" height="656" loading="lazy" decoding="async" alt="NetDoctor report in Portuguese: weak Wi-Fi, 30% signal strength, three recommended actions and the findings table with the code WIFI_WEAK"></span>
+            <span class="corner tl" aria-hidden="true"></span><span class="corner tr" aria-hidden="true"></span><span class="corner bl" aria-hidden="true"></span><span class="corner br" aria-hidden="true"></span>
+          </a>
+        </div>
+        <div>
+          <div class="plate-label">
+            <h3>Technical report for support <span class="mono">laudo.html</span></h3>
+            <p>Congested channel, loss that starts at the provider and devices on the network, each finding with a recommendation and a code.</p>
+          </div>
+          <a class="plate shot" href="../img/netdoctor-laudo-1400.webp" aria-label="Open the technical report screenshot at full size">
+            <span class="plate-inner"><img src="../img/netdoctor-laudo-800.webp" srcset="../img/netdoctor-laudo-800.webp 800w, ../img/netdoctor-laudo-1400.webp 1400w" sizes="(min-width: 1024px) 420px, (min-width: 720px) 45vw, 92vw" width="800" height="876" loading="lazy" decoding="async" alt="NetDoctor technical report in Portuguese: channel 6 congested, 70% utilization, loss starting at the provider's network and devices on the network, each with a recommendation and a code"></span>
+            <span class="corner tl" aria-hidden="true"></span><span class="corner tr" aria-hidden="true"></span><span class="corner bl" aria-hidden="true"></span><span class="corner br" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+      <p class="plates-note">Screenshots made with the project’s test data, not from a real network.</p>
+      </div>
+    </section>
+
+    <section class="signature" id="citizen" aria-labelledby="ca-title">
+      <div class="wrap">
+      <hr class="tooled">
+      <h2 id="ca-title">Citizen Assist AI: an assistant that would rather not answer than guess</h2>
+      <p class="meta">Project 2 · assistant evaluated with metrics</p>
+      <p class="intro">It guides citizens on public services using only official sources. Built by a team of 3 at FIAP’s Global Solution, in 2026. Search with an inverted index and typo correction, related topics through a graph and paths between topics with Dijkstra, in pure Python and working offline.</p>
+      <div class="case">
+        <div>
+          <ul class="notes">
+            <li>
+              <h3>Measured, not assumed</h3>
+              <p>An evaluation script runs 30 test questions and computes accuracy, coverage, abstention and response time. The numbers alongside come from that run.</p>
+            </li>
+            <li>
+              <h3>The tests found the error that mattered</h3>
+              <p>The first version answered “cake recipe” with the guidance for the CPF (Brazil’s taxpayer ID). The second started showing options with a low-confidence warning, or abstaining, when the knowledge base doesn’t support the answer.</p>
+            </li>
+            <li>
+              <h3>Two answer styles, compared</h3>
+              <p>A direct model and one with context and caveats, measured on the same questions: both give a source and a warning in 100% of cases. The one with caveats became the default.</p>
+            </li>
+          </ul>
+          <div class="links">
+            <a class="btn btn-primary" href="https://youtu.be/QpQYXNN09l8" rel="noopener">Watch the video</a>
+            <a class="btn btn-paper" href="https://github.com/brunostrapazzon/CITIZEN-ASSIST-AI" rel="noopener">Code on GitHub</a>
+          </div>
+        </div>
+        <div class="figures figures-2">
+          <div><b>86.7%</b><span>accuracy on 30 test questions</span></div>
+          <div><b>87.5%</b><span>of questions with no answer in the base, correctly declined</span></div>
+          <div><b>0</b><span>technical failures in the evaluation</span></div>
+          <div><b>0.08 ms</b><span>average time per query</span></div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="signature" id="projects" aria-labelledby="mp-title">
+      <div class="wrap">
+      <hr class="tooled">
+      <h2 id="mp-title">Data, models and systems, as a team</h2>
+      <ul class="contents">
+        <li>
+          <div>
+            <h3>EV ChargeOps</h3>
+            <p class="meta">Enterprise Challenge GoodWe + FIAP · 2026 · team of 3</p>
+          </div>
+          <p>Measures, validates and splits the electric car charging bill in residential condominiums. It reads the charger over Modbus, links the session to the unit by RFID and uses an anomaly detection model (Isolation Forest) to block suspicious readings before billing. In tests with simulated data, it blocked all 12 problem sessions without blocking any normal one.</p>
+        </li>
+        <li>
+          <div>
+            <h3>ARES-VII Monitoring</h3>
+            <p class="meta">FIAP · 2026 · team of 3</p>
+          </div>
+          <div>
+            <p>Reads telemetry from a simulated Mars mission, prioritizes alerts with a queue and a stack, and forecasts the energy reserve with a hand-written linear regression, in pure Python.</p>
+            <a class="link" href="https://github.com/brunostrapazzon/Global-Solution---1-Semestre-" rel="noopener">Repository</a>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>SCIC Aurora Siger</h3>
+            <p class="meta">FIAP · academic prototype</p>
+          </div>
+          <div>
+            <p>Latency analysis, forecasting, alert prioritization with a heap and prefix search with a trie.</p>
+            <a class="link" href="https://github.com/brunostrapazzon/scic-aurora-siger" rel="noopener">Repository</a>
+          </div>
+        </li>
+      </ul>
+      </div>
+    </section>
+
+    <section class="signature" id="education" aria-labelledby="ed-title">
+      <div class="wrap">
+      <hr class="tooled">
+      <h2 id="ed-title">Computer Science at FIAP</h2>
+      <div class="edu">
+        <div>
+          <p class="edu-school">FIAP · Bachelor’s in Computer Science</p>
+          <p class="edu-when">2026 – 2029 (expected) · online · ENEM scholarship</p>
+          <p class="edu-text">The team projects on this page came from the course: Citizen Assist AI at the Global Solution, EV ChargeOps at the Enterprise Challenge with GoodWe, and the ARES-VII and SCIC monitoring systems.</p>
+        </div>
+        <dl class="facts">
+          <div><dt>Certifications</dt><dd>Programming Logic (FIAP, 2026) · Communication (FIAP, 2026) · Getting Started in Programming (Alura, 2026)</dd></div>
+          <div><dt>Languages</dt><dd>Native Portuguese · English B2 (TOEFL ITP, 2024)</dd></div>
+          <div><dt>Awards</dt><dd>Two bronze medals at OBMEP, the Brazilian Public Schools Mathematics Olympiad</dd></div>
+        </dl>
+      </div>
+      </div>
+    </section>
+
+    <section class="signature" id="experience" aria-labelledby="ex-title">
+      <div class="wrap">
+      <hr class="tooled">
+      <h2 id="ex-title">Before I automate, I help the person who has the problem</h2>
+      <div class="job">
+        <p class="when">Oct. 2023 – present</p>
+        <div>
+          <h3>IT Assistant · AC Informática</h3>
+          <ul>
+            <li>Technical support and networking at a company that represents an internet provider in Paraí (RS), Brazil: about 100 clients served and 20 networks configured.</li>
+            <li>It’s where the problems I automate come from. NetDoctor was born from the pattern that repeated most in the tickets.</li>
+            <li>I also maintain computers and printers and manage clients’ internal networks.</li>
+          </ul>
+        </div>
+      </div>
+      <dl class="kit">
+        <div><dt>AI and data</dt><dd>Language model APIs (Groq, OpenAI, Ollama), output validation, evaluation with metrics, anomaly detection</dd></div>
+        <div><dt>Automation and engineering</dt><dd>Python, pytest, Git, GitHub Actions, PyInstaller, Streamlit, Windows command automation</dd></div>
+        <div><dt>Infrastructure</dt><dd>TCP/IP networks, DHCP, DNS, Wi-Fi, Windows, user support</dd></div>
+      </dl>
+      </div>
+    </section>
+
+    <section class="signature colophon" id="contact" aria-labelledby="co-title">
+      <div class="wrap">
+      <hr class="tooled">
+      <h2 id="co-title">I’m looking for my first remote role in automation or applied AI.</h2>
+      <ul class="contact-list">
+        <li><span>E-mail</span><a href="mailto:strapazzonbruno@gmail.com">strapazzonbruno@gmail.com</a></li>
+        <li><span>Phone and WhatsApp</span><a href="tel:+5554999838415">+55 (54) 99983-8415</a></li>
+        <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/bruno-trevizan-strapazzon-7a7b24367" rel="noopener">bruno-trevizan-strapazzon</a></li>
+        <li><span>GitHub</span><a href="https://github.com/brunostrapazzon" rel="noopener">brunostrapazzon</a></li>
+      </ul>
+      </div>
+    </section>
+
+</main>
+
+<footer class="pages">
+  <div class="wrap">
+    <hr class="tooled">
+    <p>Handmade, no framework. <a class="link" href="https://github.com/brunostrapazzon/brunostrapazzon.github.io">Site source code</a>.</p>
+    <p lang="pt-BR">Esta página também está <a class="link" href="../" hreflang="pt-BR">em português</a>.</p>
+  </div>
+</footer>
+
+<script src="../assets/site.js"></script>
+</body>
+</html>

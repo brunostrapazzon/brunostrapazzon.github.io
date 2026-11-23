@@ -5,11 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bruno Strapazzon · Automação e IA aplicada</title>
 <meta name="description" content="Estudante de Ciência da Computação na FIAP. Construo automações e sistemas com IA que dá para conferir: regras e testes onde a IA poderia errar, métricas para saber quando ela acerta.">
+<link rel="canonical" href="https://brunostrapazzon.github.io/">
+<link rel="alternate" hreflang="pt-BR" href="https://brunostrapazzon.github.io/">
+<link rel="alternate" hreflang="en" href="https://brunostrapazzon.github.io/en/">
 <meta property="og:title" content="Bruno Strapazzon · Automação e IA aplicada">
 <meta property="og:description" content="Automações e IA que dá para conferir. Python, modelos de linguagem, avaliação e testes.">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://brunostrapazzon.github.io/">
 <meta property="og:image" content="https://brunostrapazzon.github.io/img/bruno-960.webp">
-<meta name="theme-color" content="#1b2231">
+<meta name="theme-color" content="#0d1119">
+<meta name="twitter:card" content="summary">
 <script>
   // Tema antes da primeira pintura: sem piscar. Escuro é o padrão.
   (function () {
@@ -18,406 +24,80 @@
     document.documentElement.setAttribute("data-theme", t);
   })();
 </script>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f3358'/%3E%3Ctext x='16' y='21.5' font-family='Arial,sans-serif' font-size='15' font-weight='700' text-anchor='middle' fill='%23f4efe6'%3EBS%3C/text%3E%3C/svg%3E">
-<link rel="preload" as="image" type="image/webp" href="img/bruno-960.webp" imagesrcset="img/bruno-480.webp 480w, img/bruno-960.webp 960w" imagesizes="(min-width: 880px) 360px, 104px">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231f3358'/%3E%3Cpath d='M9 4v24' stroke='%238ec0de' stroke-width='2' stroke-dasharray='3 3'/%3E%3Ctext x='19' y='21.5' font-family='Georgia,serif' font-size='14' text-anchor='middle' fill='%23f4efe6'%3EB%3C/text%3E%3C/svg%3E">
+<link rel="preload" as="image" type="image/webp" href="img/bruno-960.webp" imagesrcset="img/bruno-480.webp 480w, img/bruno-960.webp 960w" imagesizes="(min-width: 1024px) 276px, (min-width: 720px) 196px, 114px">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500;600&display=swap">
-<style>
-/* Tokens. Escuro é o padrão; o claro troca só as variáveis. */
-:root {
-  /* Escuro suave: azul-marinho acinzentado e creme, nada de preto puro. */
-  --bg: #1b2231;
-  --surface: #222b3d;
-  --surface-2: #29334a;
-  --line: rgba(233, 226, 211, 0.09);
-  --line-strong: rgba(233, 226, 211, 0.18);
-  --text: #e9e2d3;
-  --text-2: #bdb6a8;
-  --text-3: #a29c91;
-  --blue: #93c5e2;          /* azul do Grêmio em tom pastel */
-  --blue-solid: #93c5e2;
-  --blue-solid-hover: #a9d3ea;
-  --blue-soft: rgba(147, 197, 226, 0.14);
-  --on-blue: #17202f;
-  --ok: #a3cfae;
-  --warn: #e6cb93;
-  --bad: #eba79d;
-  --shadow: rgba(8, 11, 18, 0.45);
-  --header-bg: rgba(27, 34, 49, 0.82);
-  --selection: rgba(147, 197, 226, 0.32);
-
-  --font-weight-normal: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
-  --z-header: 100;
-  --header-h: 60px;
-  color-scheme: dark;
-}
-:root[data-theme="light"] {
-  /* Claro: papel off-white e azul-marinho. */
-  --bg: #f4efe6;
-  --surface: #faf7f1;
-  --surface-2: #ece5d8;
-  --line: rgba(31, 51, 88, 0.12);
-  --line-strong: rgba(31, 51, 88, 0.22);
-  --text: #1f3358;
-  --text-2: #3f4b66;
-  --text-3: #5a6378;
-  --blue: #0a6699;          /* azul do Grêmio, escurecido para texto pequeno */
-  --blue-solid: #1f3358;    /* botões em azul-marinho */
-  --blue-solid-hover: #2a4270;
-  --blue-soft: rgba(13, 128, 191, 0.10);
-  --on-blue: #f7f3ec;
-  --ok: #2f6b45;
-  --warn: #7d5a14;
-  --bad: #9a3d31;
-  --shadow: rgba(31, 51, 88, 0.16);
-  --header-bg: rgba(244, 239, 230, 0.85);
-  --selection: rgba(13, 128, 191, 0.22);
-  color-scheme: light;
-}
-.no-transitions, .no-transitions * { transition: none !important; animation: none !important; }
-
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font: var(--font-weight-normal) 17px/1.6 "IBM Plex Sans", system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
-}
-h1, h2, h3, h4 { text-wrap: balance; margin: 0; font-weight: var(--font-weight-semibold); }
-h1, h2 { font-family: "IBM Plex Serif", Georgia, serif; font-weight: var(--font-weight-medium); }
-p { margin: 0; }
-a { color: inherit; }
-button, a, label { touch-action: manipulation; }
-[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
-.mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
-.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
-.accent { color: var(--blue); }
-:root { accent-color: var(--blue); }
-::selection { background: var(--selection); color: var(--text); }
-:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
-
-/* Cabeçalho */
-.top {
-  position: sticky; top: 0; z-index: var(--z-header);
-  background: var(--header-bg);
-  backdrop-filter: saturate(160%) blur(12px);
-  -webkit-backdrop-filter: saturate(160%) blur(12px);
-  box-shadow: 0 1px 0 var(--line);
-}
-.top .wrap { height: var(--header-h); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.brand { min-height: 44px; display: inline-flex; align-items: center; gap: 10px; font-weight: var(--font-weight-semibold); text-decoration: none; letter-spacing: -0.01em; }
-.brand-mark {
-  width: 26px; height: 26px; border-radius: 7px; display: grid; place-items: center;
-  background: var(--blue-solid); color: var(--on-blue); font-size: 11px; font-weight: var(--font-weight-semibold); letter-spacing: 0;
-}
-.top-right { display: flex; align-items: center; gap: 4px; }
-.nav { display: flex; gap: 2px; }
-.nav a {
-  min-height: 44px; display: inline-flex; align-items: center; padding: 0 12px;
-  color: var(--text-2); text-decoration: none; font-size: 15px; border-radius: 8px;
-  transition: color 150ms ease, background-color 150ms ease;
-}
-.icon-btn {
-  width: 44px; height: 44px; display: grid; place-items: center; border: 0; border-radius: 10px;
-  background: transparent; color: var(--text-2); cursor: pointer;
-  transition: color 150ms ease, background-color 150ms ease, transform 120ms var(--ease-out-quart);
-}
-.icon-btn:active { transform: scale(0.94); }
-.icon-btn svg { width: 18px; height: 18px; }
-.icon-sun { display: none; }
-:root[data-theme="dark"] .icon-sun { display: block; }
-:root[data-theme="dark"] .icon-moon { display: none; }
-@media (hover: hover) and (pointer: fine) {
-  .nav a:hover, .icon-btn:hover { color: var(--text); background: var(--surface-2); }
-}
-@media (max-width: 600px) { .nav .hide-s { display: none; } }
-.brand { white-space: nowrap; }
-@media (max-width: 359px) { .brand-mark { display: none; } }
-
-/* Abertura */
-.hero { position: relative; isolation: isolate; overflow: hidden; }
-.hero-grid { display: grid; grid-template-columns: 1fr; gap: 28px; padding-top: 56px; padding-bottom: 64px; align-items: center; }
-@media (min-width: 880px) { .hero-grid { grid-template-columns: 1fr 360px; gap: 64px; padding-top: 88px; padding-bottom: 96px; } }
-.live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 3px var(--blue-soft); }
-.hero h1 { font-size: clamp(38px, 6.4vw, 64px); line-height: 1.04; letter-spacing: -0.02em; max-width: 14ch; }
-.hero .lede { font-size: 19px; color: var(--text-2); max-width: 54ch; margin-top: 24px; }
-.avail { display: flex; align-items: center; gap: 10px; margin-top: 20px; font-size: 16px; color: var(--text); }
-.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
-
-.portrait { position: relative; margin: 0; order: -1; }
-@media (min-width: 880px) { .portrait { order: 0; } }
-.portrait img {
-  display: block; width: 104px; height: 104px; object-fit: cover; object-position: 50% 18%;
-  border-radius: 24px; box-shadow: 0 0 0 1px var(--line-strong);
-  background: var(--surface-2);
-}
-@media (min-width: 880px) {
-  .portrait img {
-    width: 360px; height: 450px; border-radius: 22px;
-    box-shadow: 0 0 0 1px var(--line-strong), 0 18px 40px -22px var(--shadow);
-  }
-}
-
-/* Botões */
-.btn {
-  min-height: 44px; display: inline-flex; align-items: center; gap: 8px; padding: 0 18px;
-  border-radius: 10px; font: inherit; font-size: 16px; font-weight: var(--font-weight-medium);
-  text-decoration: none; cursor: pointer; border: 0;
-  transition: transform 120ms var(--ease-out-quart), background-color 150ms ease, box-shadow 150ms ease;
-}
-.btn:active { transform: scale(0.97); }
-.btn-primary { background: var(--blue-solid); color: var(--on-blue); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14); }
-.btn-ghost { background: var(--surface); color: var(--text); box-shadow: inset 0 0 0 1px var(--line-strong); }
-.btn svg { width: 16px; height: 16px; }
-@media (hover: hover) and (pointer: fine) {
-  .btn-primary:hover { background: var(--blue-solid-hover); }
-  .btn-ghost:hover { background: var(--surface-2); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .btn, .nav a, .icon-btn { transition: none; }
-}
-
-/* Seções */
-section { padding: 72px 0; box-shadow: 0 -1px 0 var(--line); }
-.section-meta { font-size: 15px; color: var(--text-3); margin-top: 10px; }
-section h2 { font-size: clamp(28px, 4.2vw, 40px); letter-spacing: -0.015em; line-height: 1.1; max-width: 22ch; }
-.section-lede { color: var(--text-2); max-width: 62ch; margin-top: 16px; }
-
-/* Estudos de caso */
-.case { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 40px; }
-.case > *, .hero-grid > * { min-width: 0; }
-@media (min-width: 880px) { .case { grid-template-columns: 1fr 1.08fr; gap: 56px; } }
-.decisions { list-style: none; padding: 0; margin: 0; display: grid; gap: 24px; }
-.decisions h3 { font-size: 17px; }
-.decisions p { color: var(--text-2); margin-top: 4px; font-size: 16px; }
-.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 32px; background: var(--line); border-radius: 14px; overflow: hidden; box-shadow: 0 0 0 1px var(--line); }
-.stat { background: var(--surface); padding: 18px; }
-.stat b { display: block; font-size: 28px; font-weight: var(--font-weight-semibold); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
-.stat span { font-size: 13px; color: var(--text-3); line-height: 1.35; display: block; margin-top: 4px; }
-@media (max-width: 559px) {
-  .stats:not(.stats-2) { grid-template-columns: 1fr; }
-  .stats:not(.stats-2) .stat { display: flex; align-items: baseline; gap: 14px; }
-  .stats:not(.stats-2) .stat span { margin-top: 0; font-size: 15px; color: var(--text-2); }
-}
-.stats-2 { grid-template-columns: repeat(2, 1fr); margin-top: 0; }
-.stats-2 .stat { padding: 22px; }
-.stats-2 .stat b { font-size: 34px; }
-.stats-2 .stat:first-child b { color: var(--blue); }
-.case-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
-
-/* Prints */
-.shots { display: grid; grid-template-columns: 1fr; gap: 28px; margin-top: 56px; align-items: start; }
-@media (min-width: 880px) { .shots { grid-template-columns: 1fr 1fr; gap: 32px; } }
-.shot { margin: 0; }
-.shot-frame {
-  display: block; border-radius: 14px; overflow: hidden; background: var(--surface);
-  box-shadow: 0 0 0 1px var(--line-strong), 0 18px 40px -26px var(--shadow);
-  transition: transform 200ms var(--ease-out-quart), box-shadow 200ms ease;
-}
-.shot-frame:active { transform: scale(0.99); }
-@media (hover: hover) and (pointer: fine) {
-  .shot-frame:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--blue), 0 24px 50px -28px var(--shadow); }
-}
-@media (prefers-reduced-motion: reduce) { .shot-frame { transition: none; } }
-.shot-bar {
-  display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 12px;
-  background: var(--surface-2); box-shadow: inset 0 -1px 0 var(--line); user-select: none;
-}
-.shot-bar span { font-size: 12px; color: var(--text-3); font-family: "IBM Plex Mono", ui-monospace, monospace; }
-.shot img { display: block; width: 100%; height: auto; }
-.shot figcaption { margin-top: 12px; font-size: 15px; color: var(--text-2); }
-.shot figcaption b { color: var(--text); font-weight: var(--font-weight-medium); }
-.shots-note { margin-top: 16px; font-size: 13px; color: var(--text-3); }
-
-/* Demonstração */
-.demo {
-  background: var(--surface); border-radius: 18px; padding: 20px;
-  box-shadow: 0 0 0 1px var(--line), 0 18px 40px -28px var(--shadow);
-  isolation: isolate;
-}
-.demo-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.demo-head h3 { font-size: 16px; }
-.tag { font-size: 12px; color: var(--blue); background: var(--blue-soft); padding: 3px 8px; border-radius: 6px; }
-.demo-q { font-size: 14px; color: var(--text-2); margin: 14px 0 8px; }
-.scenarios { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
-.scenarios label {
-  position: relative; min-height: 44px; display: inline-flex; align-items: center; padding: 0 14px;
-  border-radius: 999px; font-size: 14px; cursor: pointer; user-select: none;
-  background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); color: var(--text-2);
-  transition: background-color 150ms ease, color 150ms ease, transform 120ms var(--ease-out-quart);
-}
-.scenarios label:active { transform: scale(0.97); }
-.scenarios input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
-.scenarios label:has(input:checked) { background: var(--blue-solid); color: var(--on-blue); box-shadow: none; }
-.scenarios label:has(input:focus-visible) { outline: 2px solid var(--blue); outline-offset: 3px; }
-@media (hover: hover) and (pointer: fine) {
-  .scenarios label:not(:has(input:checked)):hover { color: var(--text); }
-}
-@media (prefers-reduced-motion: reduce) { .scenarios label { transition: none; } }
-
-.chain { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 2px; }
-.step {
-  display: grid; grid-template-columns: 22px 1fr auto; align-items: center; gap: 12px;
-  min-height: 42px; padding: 0 12px; border-radius: 10px; background: var(--surface-2); font-size: 15px;
-}
-.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line-strong); justify-self: center; transition: background-color 150ms ease, transform 200ms var(--ease-out-quart); }
-.step .what small { display: block; font-size: 12px; color: var(--text-3); line-height: 1.2; }
-.status { font-size: 13px; color: var(--text-3); min-width: 9ch; text-align: right; }
-.step[data-state="checking"] .dot { background: var(--blue); transform: scale(1.3); }
-.step[data-state="checking"] .status { color: var(--blue); }
-.step[data-state="ok"] .dot { background: var(--ok); }
-.step[data-state="ok"] .status { color: var(--ok); }
-.step[data-state="warn"] .dot { background: var(--warn); }
-.step[data-state="warn"] .status { color: var(--warn); }
-.step[data-state="fail"] .dot { background: var(--bad); }
-.step[data-state="fail"] .status { color: var(--bad); }
-.step[data-state="skip"] { color: var(--text-3); }
-@media (prefers-reduced-motion: reduce) { .dot { transition: none; } }
-
-.verdict {
-  margin-top: 14px; border-radius: 12px; padding: 16px; background: transparent;
-  min-height: 150px; box-shadow: inset 0 0 0 1px var(--line-strong);
-}
-.verdict[data-sev="ok"] { box-shadow: inset 0 0 0 1px var(--ok); }
-.verdict[data-sev="warn"] { box-shadow: inset 0 0 0 1px var(--warn); }
-.verdict[data-sev="bad"] { box-shadow: inset 0 0 0 1px var(--bad); }
-.verdict .code { font-size: 12px; color: var(--blue); }
-.verdict h4 { margin: 6px 0; font-size: 17px; }
-.verdict p { font-size: 15px; color: var(--text-2); }
-.verdict.fresh { animation: settle 220ms var(--ease-out-quart); }
-@keyframes settle { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { .verdict.fresh { animation: none; } }
-.demo-foot { font-size: 12px; color: var(--text-3); margin-top: 12px; }
-
-/* Lista de projetos */
-.projects { list-style: none; padding: 0; margin: 36px 0 0; }
-.project { display: grid; grid-template-columns: 1fr; gap: 6px 32px; padding: 24px 0; box-shadow: 0 -1px 0 var(--line); }
-.project:first-child { box-shadow: none; padding-top: 0; }
-@media (min-width: 760px) { .project { grid-template-columns: 240px 1fr; } }
-.project h3 { font-size: 18px; }
-.project .meta { font-size: 13px; color: var(--text-3); margin-top: 2px; }
-.project p { color: var(--text-2); font-size: 16px; max-width: 68ch; }
-.project .links { display: flex; gap: 4px 18px; flex-wrap: wrap; margin-top: 6px; font-size: 15px; }
-.project .links a, .inline-link {
-  min-height: 44px; display: inline-flex; align-items: center; color: var(--blue);
-  text-decoration: underline; text-underline-offset: 4px; text-decoration-color: transparent;
-  transition: text-decoration-color 150ms ease;
-}
-@media (hover: hover) and (pointer: fine) {
-  .project .links a:hover, .inline-link:hover { text-decoration-color: currentColor; }
-}
-@media (prefers-reduced-motion: reduce) { .project .links a, .inline-link { transition: none; } }
-
-/* Formação */
-.strong { color: var(--text); font-weight: var(--font-weight-semibold); }
-.edu { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 36px; }
-@media (min-width: 880px) { .edu { grid-template-columns: 1.1fr 1fr; gap: 16px; } }
-.edu-main, .edu-list { background: var(--surface); border-radius: 16px; padding: 24px; box-shadow: 0 0 0 1px var(--line); }
-.edu-main { box-shadow: 0 0 0 1px var(--line-strong); }
-.edu-school { font-size: 19px; font-weight: var(--font-weight-semibold); letter-spacing: -0.01em; }
-.edu-when { font-size: 14px; color: var(--blue); margin-top: 4px; }
-.edu-text { color: var(--text-2); margin-top: 14px; font-size: 16px; }
-.edu-list { list-style: none; margin: 0; display: grid; gap: 14px; }
-.edu-list span { font-size: 13px; color: var(--text-3); }
-.edu-list p { font-size: 15px; color: var(--text-2); margin-top: 2px; }
-
-/* Experiência */
-.job { margin-top: 36px; display: grid; grid-template-columns: 1fr; gap: 8px 32px; }
-@media (min-width: 760px) { .job { grid-template-columns: 240px 1fr; } }
-.job .when { font-size: 14px; color: var(--text-3); font-variant-numeric: tabular-nums; }
-.job h3 { font-size: 18px; }
-.job ul { max-width: 68ch; margin: 10px 0 0; padding-left: 18px; color: var(--text-2); font-size: 16px; display: grid; gap: 6px; }
-.job li::marker { color: var(--blue); }
-.tools { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 44px; }
-@media (min-width: 760px) { .tools { grid-template-columns: repeat(3, 1fr); } }
-.tool { background: var(--surface); border-radius: 14px; padding: 18px; box-shadow: 0 0 0 1px var(--line); }
-.tool h3 { font-size: 14px; color: var(--blue); font-weight: var(--font-weight-medium); }
-.tool p { font-size: 15px; margin-top: 6px; color: var(--text-2); }
-
-/* Contato */
-.contact-card {
-  position: relative; isolation: isolate; overflow: hidden;
-  background: var(--surface); border-radius: 22px; padding: 40px 28px;
-  box-shadow: 0 0 0 1px var(--line);
-}
-@media (min-width: 760px) { .contact-card { padding: 56px; } }
-.contact-card h2 { max-width: 20ch; }
-.contact-list { list-style: none; padding: 0; margin: 28px 0 0; display: grid; grid-template-columns: 1fr; max-width: 640px; }
-.contact-list li { display: grid; grid-template-columns: 1fr; gap: 0 24px; padding: 6px 0; box-shadow: 0 1px 0 var(--line); }
-@media (min-width: 600px) { .contact-list li { grid-template-columns: 180px 1fr; align-items: center; } }
-.contact-list span { font-size: 13px; color: var(--text-3); padding-top: 6px; }
-@media (min-width: 600px) { .contact-list span { padding-top: 0; } }
-.contact-list a {
-  min-height: 44px; display: inline-flex; align-items: center; color: var(--text); font-size: 16px;
-  text-decoration: underline; text-underline-offset: 4px; text-decoration-color: transparent;
-  font-variant-numeric: tabular-nums; overflow-wrap: anywhere;
-  transition: color 150ms ease, text-decoration-color 150ms ease;
-}
-@media (hover: hover) and (pointer: fine) {
-  .contact-list a:hover { color: var(--blue); text-decoration-color: currentColor; }
-}
-@media (prefers-reduced-motion: reduce) { .contact-list a { transition: none; } }
-footer { padding: 36px 0 56px; color: var(--text-3); font-size: 14px; }
-footer p { max-width: 68ch; }
-footer p + p { margin-top: 8px; }
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400&family=Marcellus&display=swap">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
-<header class="top">
-  <div class="wrap">
-    <a class="brand" href="#inicio"><span class="brand-mark" aria-hidden="true">BS</span>Bruno Strapazzon</a>
-    <div class="top-right">
-      <nav class="nav" aria-label="Seções">
-        <a href="#projetos" class="hide-s">Projetos</a>
-        <a href="#formacao" class="hide-s">Formação</a>
-        <a href="#experiencia" class="hide-s">Experiência</a>
-        <a href="#contato">Contato</a>
-      </nav>
-      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Mudar para o tema claro">
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
-      </button>
-    </div>
+<header class="rail">
+  <span class="stitch-y" aria-hidden="true"></span>
+  <span class="stitch-x" aria-hidden="true"></span>
+  <a class="brand" href="#inicio">
+    <span class="brand-name">Bruno Strapazzon</span>
+    <span class="brand-role">Automação e IA aplicada</span>
+  </a>
+  <nav aria-label="Índice">
+    <ul class="index">
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#netdoctor">NetDoctor</a></li>
+      <li><a href="#citizen">Citizen Assist AI</a></li>
+      <li><a href="#projetos">Outros projetos</a></li>
+      <li><a href="#formacao">Formação</a></li>
+      <li><a href="#experiencia">Experiência</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
+  <div class="rail-tools">
+    <a class="tool-btn bar-contact" href="#contato">Contato</a>
+    <a class="tool-btn" href="en/" hreflang="en" lang="en" aria-label="Read in English">EN</a>
+    <button class="tool-btn" id="theme-toggle" type="button" aria-label="Mudar para o tema claro">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+    </button>
   </div>
 </header>
 
-<main id="inicio">
-  <div class="hero">
-    <div class="wrap hero-grid">
-      <div>
-                <h1>Automação e IA <span class="accent">que dá para conferir.</span></h1>
-        <p class="lede">Estudo Ciência da Computação na <strong class="strong">FIAP</strong>, como bolsista pelo ENEM, e trabalho com suporte de TI desde 2023. Nos meus projetos, a IA entra onde ajuda; onde ela poderia errar, entram regras, testes e métricas. E quando o sistema não sabe, ele diz que não sabe.</p>
-        <p class="avail"><span class="live-dot" aria-hidden="true"></span>Disponível para vagas remotas</p>
-        <div class="actions">
-          <a class="btn btn-primary" href="#projetos">Ver os projetos</a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/bruno-trevizan-strapazzon-7a7b24367" rel="noopener">LinkedIn</a>
-          <a class="btn btn-ghost" href="https://github.com/brunostrapazzon" rel="noopener">GitHub</a>
-        </div>
-      </div>
-      <figure class="portrait">
-        <img src="img/bruno-960.webp" srcset="img/bruno-480.webp 480w, img/bruno-960.webp 960w" sizes="(min-width: 880px) 360px, 104px" width="360" height="450" alt="Bruno Strapazzon, de terno bordô e gravata clara" fetchpriority="high" decoding="async">
-      </figure>
-    </div>
-  </div>
+<main class="pages" id="conteudo">
 
-  <section id="projetos">
-    <div class="wrap">
-      <h2>NetDoctor: regras decidem o diagnóstico, a IA só explica</h2>
-      <p class="section-meta">Projeto 1 · automação com modelo de linguagem</p>
-      <p class="section-lede">Saiu do meu dia a dia no suporte: a maioria dos chamados de “minha internet não funciona” é Wi-Fi fraco, roteador travado ou DNS, e descobrir isso exigia um técnico. O NetDoctor automatiza essa triagem no Windows em uns 10 segundos e explica a causa em português simples.</p>
+    <section class="opening" id="inicio" aria-labelledby="titulo">
+      <div class="wrap title-page">
+      <div>
+        <h1 id="titulo" class="enter">Automação e IA <span class="thread">que dá para conferir.</span></h1>
+        <div class="knot enter enter-2" aria-hidden="true">
+          <hr class="tooled">
+          <svg viewBox="0 0 34 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 8h9M24 8h9"/><ellipse cx="17" cy="8" rx="6" ry="4.5"/><path d="M11 3.5c3 2 9 7 12 9M11 12.5c3-2 9-7 12-9"/></svg>
+          <hr class="tooled">
+        </div>
+        <p class="lede enter enter-2">Estudo Ciência da Computação na <strong>FIAP</strong>, como bolsista pelo ENEM, e trabalho com suporte de TI desde 2023. Nos meus projetos, a IA entra onde ajuda; onde ela poderia errar, entram regras, testes e métricas. E quando o sistema não sabe, ele diz que não sabe.</p>
+        <p class="avail enter enter-3">Disponível para vagas remotas</p>
+        <div class="actions enter enter-3">
+          <a class="btn btn-primary" href="mailto:strapazzonbruno@gmail.com">Escrever um e-mail</a>
+          <a class="btn btn-paper" href="https://wa.me/5554999838415" rel="noopener">Chamar no WhatsApp</a>
+        </div>
+        <p class="also enter enter-3">Também no <a class="link" href="https://www.linkedin.com/in/bruno-trevizan-strapazzon-7a7b24367" rel="noopener">LinkedIn</a> e no <a class="link" href="https://github.com/brunostrapazzon" rel="noopener">GitHub</a>.</p>
+      </div>
+      <figure class="plate portrait enter enter-2">
+        <img src="img/bruno-960.webp" srcset="img/bruno-480.webp 480w, img/bruno-960.webp 960w" sizes="(min-width: 1024px) 276px, (min-width: 720px) 196px, 114px" width="360" height="450" alt="Bruno Strapazzon, de terno bordô e gravata clara" fetchpriority="high" decoding="async">
+        <span class="corner tl" aria-hidden="true"></span><span class="corner tr" aria-hidden="true"></span><span class="corner bl" aria-hidden="true"></span><span class="corner br" aria-hidden="true"></span>
+      </figure>
+      </div>
+    </section>
+
+    <section class="signature" id="netdoctor" aria-labelledby="nd-titulo">
+      <div class="wrap">
+      <hr class="tooled">
+      <h2 id="nd-titulo">NetDoctor: regras decidem o diagnóstico, a IA só explica</h2>
+      <p class="meta">Projeto 1 · automação com modelo de linguagem</p>
+      <p class="intro">Saiu do meu dia a dia no suporte: a maioria dos chamados de “minha internet não funciona” é Wi-Fi fraco, roteador travado ou DNS, e descobrir isso exigia um técnico. O NetDoctor automatiza essa triagem no Windows em uns 10 segundos e explica a causa em português simples.</p>
 
       <div class="case">
         <div>
-          <ul class="decisions">
+          <ul class="notes">
             <li>
               <h3>A IA não decide nada</h3>
               <p>O diagnóstico vem de regras determinísticas: o primeiro teste que falha é a causa. O modelo de linguagem (Groq, OpenAI ou Ollama local) só reescreve a explicação. O mesmo problema sempre dá o mesmo resultado.</p>
@@ -436,24 +116,24 @@ footer p + p { margin-top: 8px; }
             </li>
           </ul>
 
-          <div class="stats">
-            <div class="stat"><b>279</b><span>testes automatizados</span></div>
-            <div class="stat"><b>3</b><span>provedores de IA, só por configuração</span></div>
-            <div class="stat"><b>0</b><span>dados da rede enviados à IA</span></div>
+          <div class="figures">
+            <div><b>279</b><span>testes automatizados</span></div>
+            <div><b>3</b><span>provedores de IA, só por configuração</span></div>
+            <div><b>0</b><span>dados da rede enviados à IA</span></div>
           </div>
 
-          <div class="case-links">
+          <div class="links">
             <a class="btn btn-primary" href="https://github.com/brunostrapazzon/NetDoctor/releases/latest" rel="noopener">Baixar para Windows</a>
-            <a class="btn btn-ghost" href="https://github.com/brunostrapazzon/NetDoctor" rel="noopener">Código no GitHub</a>
+            <a class="btn btn-paper" href="https://github.com/brunostrapazzon/NetDoctor" rel="noopener">Código no GitHub</a>
           </div>
         </div>
 
-        <div class="demo" aria-labelledby="demo-title">
+        <div class="demo" role="group" aria-labelledby="demo-titulo">
           <div class="demo-head">
-            <h3 id="demo-title">As regras, passo a passo</h3>
+            <h3 id="demo-titulo">As regras, passo a passo</h3>
             <span class="tag">simulação</span>
           </div>
-          <p class="demo-q" id="demo-q">Escolha um problema e veja a ordem dos testes:</p>
+          <p class="demo-q" id="demo-q">Escolha um problema e veja a linha passar pelos testes:</p>
           <fieldset class="scenarios" aria-labelledby="demo-q">
             <label><input type="radio" name="sc" value="ok" checked>Tudo certo</label>
             <label><input type="radio" name="sc" value="wifi">Wi-Fi fraco</label>
@@ -463,46 +143,54 @@ footer p + p { margin-top: 8px; }
           </fieldset>
 
           <ol class="chain" id="chain">
-            <li class="step" data-key="link"><span class="dot" aria-hidden="true"></span><span class="what">Computador conectado<small>cabo ou Wi-Fi ligado</small></span><span class="status mono"></span></li>
-            <li class="step" data-key="dhcp"><span class="dot" aria-hidden="true"></span><span class="what">Endereço recebido<small>o roteador entregou um IP</small></span><span class="status mono"></span></li>
-            <li class="step" data-key="router"><span class="dot" aria-hidden="true"></span><span class="what">Roteador responde<small>ping no roteador</small></span><span class="status mono"></span></li>
-            <li class="step" data-key="isp"><span class="dot" aria-hidden="true"></span><span class="what">Internet da operadora<small>ping fora de casa</small></span><span class="status mono"></span></li>
-            <li class="step" data-key="dns"><span class="dot" aria-hidden="true"></span><span class="what">Nomes dos sites<small>DNS traduz endereços</small></span><span class="status mono"></span></li>
-            <li class="step" data-key="signal"><span class="dot" aria-hidden="true"></span><span class="what">Sinal do Wi-Fi<small>força e interferência</small></span><span class="status mono"></span></li>
+            <li class="step" data-key="link"><span class="what">Computador conectado<small>cabo ou Wi-Fi ligado</small></span><span class="status"></span></li>
+            <li class="step" data-key="dhcp"><span class="what">Endereço recebido<small>o roteador entregou um IP</small></span><span class="status"></span></li>
+            <li class="step" data-key="router"><span class="what">Roteador responde<small>ping no roteador</small></span><span class="status"></span></li>
+            <li class="step" data-key="isp"><span class="what">Internet da operadora<small>ping fora de casa</small></span><span class="status"></span></li>
+            <li class="step" data-key="dns"><span class="what">Nomes dos sites<small>DNS traduz endereços</small></span><span class="status"></span></li>
+            <li class="step" data-key="signal"><span class="what">Sinal do Wi-Fi<small>força e interferência</small></span><span class="status"></span></li>
           </ol>
 
           <div class="verdict" id="verdict" aria-live="polite"></div>
           <p class="demo-foot">Simplificação das regras reais do projeto. A explicação acima é o texto pronto; com a IA ligada, ela reescreve só esse texto, nunca o diagnóstico.</p>
         </div>
       </div>
-      <div class="shots">
-        <figure class="shot">
-          <a class="shot-frame" href="img/netdoctor-cliente-1400.webp" aria-label="Abrir o print do relatório do cliente em tamanho maior">
-            <span class="shot-bar" aria-hidden="true"><span>relatorio.html</span></span>
-            <img src="img/netdoctor-cliente-800.webp" srcset="img/netdoctor-cliente-800.webp 800w, img/netdoctor-cliente-1400.webp 1400w" sizes="(min-width: 880px) 520px, 100vw" width="800" height="656" loading="lazy" decoding="async" alt="Relatório do NetDoctor: Wi-Fi fraco, força do sinal de 30%, três ações recomendadas e a tabela de achados com o código WIFI_WEAK">
-          </a>
-          <figcaption><b>Relatório do cliente.</b> A causa em uma frase, o número que a sustenta e o que fazer, em português simples.</figcaption>
-        </figure>
-        <figure class="shot">
-          <a class="shot-frame" href="img/netdoctor-laudo-1400.webp" aria-label="Abrir o print do laudo técnico em tamanho maior">
-            <span class="shot-bar" aria-hidden="true"><span>laudo.html</span></span>
-            <img src="img/netdoctor-laudo-800.webp" srcset="img/netdoctor-laudo-800.webp 800w, img/netdoctor-laudo-1400.webp 1400w" sizes="(min-width: 880px) 520px, 100vw" width="800" height="876" loading="lazy" decoding="async" alt="Laudo técnico do NetDoctor: canal 6 congestionado, utilização de 70%, perda a partir da rede da operadora e aparelhos na rede, cada um com recomendação e código">
-          </a>
-          <figcaption><b>Laudo técnico para o suporte.</b> Canal congestionado, perda que começa na operadora e aparelhos na rede, cada achado com recomendação e código.</figcaption>
-        </figure>
-      </div>
-      <p class="shots-note">Prints gerados com os dados de teste do projeto, não de uma rede real.</p>
-    </div>
-  </section>
 
-  <section id="citizen">
-    <div class="wrap">
-      <h2>Citizen Assist AI: um assistente que prefere não responder a chutar</h2>
-      <p class="section-meta">Projeto 2 · assistente avaliado com métricas</p>
-      <p class="section-lede">Orienta o cidadão sobre serviços públicos usando só fontes oficiais. Feito em equipe de 3 na Global Solution da FIAP, em 2026. Busca com índice invertido e correção de digitação, assuntos relacionados por grafo e trilhas entre temas com Dijkstra, em Python puro e funcionando offline.</p>
+      <div class="plates">
+        <div>
+          <div class="plate-label">
+            <h3>Relatório do cliente <span class="mono">relatorio.html</span></h3>
+            <p>A causa em uma frase, o número que a sustenta e o que fazer, em português simples.</p>
+          </div>
+          <a class="plate shot" href="img/netdoctor-cliente-1400.webp" aria-label="Abrir o print do relatório do cliente em tamanho maior">
+            <span class="plate-inner"><img src="img/netdoctor-cliente-800.webp" srcset="img/netdoctor-cliente-800.webp 800w, img/netdoctor-cliente-1400.webp 1400w" sizes="(min-width: 1024px) 420px, (min-width: 720px) 45vw, 92vw" width="800" height="656" loading="lazy" decoding="async" alt="Relatório do NetDoctor: Wi-Fi fraco, força do sinal de 30%, três ações recomendadas e a tabela de achados com o código WIFI_WEAK"></span>
+            <span class="corner tl" aria-hidden="true"></span><span class="corner tr" aria-hidden="true"></span><span class="corner bl" aria-hidden="true"></span><span class="corner br" aria-hidden="true"></span>
+          </a>
+        </div>
+        <div>
+          <div class="plate-label">
+            <h3>Laudo técnico para o suporte <span class="mono">laudo.html</span></h3>
+            <p>Canal congestionado, perda que começa na operadora e aparelhos na rede, cada achado com recomendação e código.</p>
+          </div>
+          <a class="plate shot" href="img/netdoctor-laudo-1400.webp" aria-label="Abrir o print do laudo técnico em tamanho maior">
+            <span class="plate-inner"><img src="img/netdoctor-laudo-800.webp" srcset="img/netdoctor-laudo-800.webp 800w, img/netdoctor-laudo-1400.webp 1400w" sizes="(min-width: 1024px) 420px, (min-width: 720px) 45vw, 92vw" width="800" height="876" loading="lazy" decoding="async" alt="Laudo técnico do NetDoctor: canal 6 congestionado, utilização de 70%, perda a partir da rede da operadora e aparelhos na rede, cada um com recomendação e código"></span>
+            <span class="corner tl" aria-hidden="true"></span><span class="corner tr" aria-hidden="true"></span><span class="corner bl" aria-hidden="true"></span><span class="corner br" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+      <p class="plates-note">Prints gerados com os dados de teste do projeto, não de uma rede real.</p>
+      </div>
+    </section>
+
+    <section class="signature" id="citizen" aria-labelledby="ca-titulo">
+      <div class="wrap">
+      <hr class="tooled">
+      <h2 id="ca-titulo">Citizen Assist AI: um assistente que prefere não responder a chutar</h2>
+      <p class="meta">Projeto 2 · assistente avaliado com métricas</p>
+      <p class="intro">Orienta o cidadão sobre serviços públicos usando só fontes oficiais. Feito em equipe de 3 na Global Solution da FIAP, em 2026. Busca com índice invertido e correção de digitação, assuntos relacionados por grafo e trilhas entre temas com Dijkstra, em Python puro e funcionando offline.</p>
       <div class="case">
         <div>
-          <ul class="decisions">
+          <ul class="notes">
             <li>
               <h3>Medido, não achado</h3>
               <p>Um script de avaliação roda 30 perguntas de teste e calcula acerto, cobertura, abstenção e tempo de resposta. Os números ao lado são dessa execução.</p>
@@ -516,85 +204,80 @@ footer p + p { margin-top: 8px; }
               <p>Um modelo direto e um com contexto e ressalvas, medidos nas mesmas perguntas: os dois trazem fonte e aviso em 100% dos casos. O com ressalvas virou o padrão.</p>
             </li>
           </ul>
-          <div class="case-links">
+          <div class="links">
             <a class="btn btn-primary" href="https://youtu.be/QpQYXNN09l8" rel="noopener">Ver o vídeo</a>
-            <a class="btn btn-ghost" href="https://github.com/brunostrapazzon/CITIZEN-ASSIST-AI" rel="noopener">Código no GitHub</a>
+            <a class="btn btn-paper" href="https://github.com/brunostrapazzon/CITIZEN-ASSIST-AI" rel="noopener">Código no GitHub</a>
           </div>
         </div>
-        <div>
-          <div class="stats stats-2">
-            <div class="stat"><b>86,7%</b><span>de acerto em 30 perguntas de teste</span></div>
-            <div class="stat"><b>87,5%</b><span>das perguntas sem resposta na base, recusadas corretamente</span></div>
-            <div class="stat"><b>0</b><span>falhas técnicas na avaliação</span></div>
-            <div class="stat"><b>0,08 ms</b><span>tempo médio por consulta</span></div>
-          </div>
+        <div class="figures figures-2">
+          <div><b>86,7%</b><span>de acerto em 30 perguntas de teste</span></div>
+          <div><b>87,5%</b><span>das perguntas sem resposta na base, recusadas corretamente</span></div>
+          <div><b>0</b><span>falhas técnicas na avaliação</span></div>
+          <div><b>0,08 ms</b><span>tempo médio por consulta</span></div>
         </div>
       </div>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <section id="mais">
-    <div class="wrap">
-      <h2>Dados, modelos e sistemas, em equipe</h2>
-      <ul class="projects">
-        <li class="project">
+    <section class="signature" id="projetos" aria-labelledby="mp-titulo">
+      <div class="wrap">
+      <hr class="tooled">
+      <h2 id="mp-titulo">Dados, modelos e sistemas, em equipe</h2>
+      <ul class="contents">
+        <li>
           <div>
             <h3>EV ChargeOps</h3>
             <p class="meta">Enterprise Challenge GoodWe + FIAP · 2026 · equipe de 3</p>
           </div>
-          <div>
-            <p>Mede, valida e divide a conta de recarga de carros elétricos em condomínios. Lê o carregador via Modbus, associa a sessão à unidade por RFID e usa um modelo de detecção de anomalias (Isolation Forest) para barrar medições suspeitas antes da cobrança. Nos testes com dados simulados, barrou as 12 sessões com problema sem bloquear nenhuma normal.</p>
-          </div>
+          <p>Mede, valida e divide a conta de recarga de carros elétricos em condomínios. Lê o carregador via Modbus, associa a sessão à unidade por RFID e usa um modelo de detecção de anomalias (Isolation Forest) para barrar medições suspeitas antes da cobrança. Nos testes com dados simulados, barrou as 12 sessões com problema sem bloquear nenhuma normal.</p>
         </li>
-        <li class="project">
+        <li>
           <div>
             <h3>Monitoramento ARES-VII</h3>
             <p class="meta">FIAP · 2026 · equipe de 3</p>
           </div>
           <div>
             <p>Lê a telemetria de uma missão simulada em Marte, prioriza alertas com fila e pilha e prevê a reserva de energia com uma regressão linear feita à mão, em Python puro.</p>
-            <div class="links">
-              <a href="https://github.com/brunostrapazzon/Global-Solution---1-Semestre-" rel="noopener">Repositório</a>
-            </div>
+            <a class="link" href="https://github.com/brunostrapazzon/Global-Solution---1-Semestre-" rel="noopener">Repositório</a>
           </div>
         </li>
-        <li class="project">
+        <li>
           <div>
             <h3>SCIC Aurora Siger</h3>
             <p class="meta">FIAP · protótipo acadêmico</p>
           </div>
           <div>
             <p>Análise de latência, previsão, priorização de alertas com heap e busca por prefixo com trie.</p>
-            <div class="links">
-              <a href="https://github.com/brunostrapazzon/scic-aurora-siger" rel="noopener">Repositório</a>
-            </div>
+            <a class="link" href="https://github.com/brunostrapazzon/scic-aurora-siger" rel="noopener">Repositório</a>
           </div>
         </li>
       </ul>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <section id="formacao">
-    <div class="wrap">
-      <h2>Ciência da Computação na FIAP</h2>
+    <section class="signature" id="formacao" aria-labelledby="fo-titulo">
+      <div class="wrap">
+      <hr class="tooled">
+      <h2 id="fo-titulo">Ciência da Computação na FIAP</h2>
       <div class="edu">
-        <div class="edu-main">
+        <div>
           <p class="edu-school">FIAP · Bacharelado em Ciência da Computação</p>
           <p class="edu-when">2026 – 2029 (previsão) · online · bolsista pelo ENEM</p>
           <p class="edu-text">Os projetos em equipe desta página saíram do curso: o Citizen Assist AI na Global Solution, o EV ChargeOps no Enterprise Challenge com a GoodWe, e os sistemas de monitoramento ARES-VII e SCIC.</p>
         </div>
-        <ul class="edu-list">
-          <li><span>Certificações</span><p>Lógica de programação (FIAP, 2026) · Comunicação (FIAP, 2026) · Começando em Programação (Alura, 2026)</p></li>
-          <li><span>Idiomas</span><p>Português nativo · Inglês B2 (TOEFL ITP, 2024)</p></li>
-          <li><span>Prêmios</span><p>Duas medalhas de bronze na OBMEP</p></li>
-        </ul>
+        <dl class="facts">
+          <div><dt>Certificações</dt><dd>Lógica de programação (FIAP, 2026) · Comunicação (FIAP, 2026) · Começando em Programação (Alura, 2026)</dd></div>
+          <div><dt>Idiomas</dt><dd>Português nativo · Inglês B2 (TOEFL ITP, 2024)</dd></div>
+          <div><dt>Prêmios</dt><dd>Duas medalhas de bronze na OBMEP</dd></div>
+        </dl>
       </div>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <section id="experiencia">
-    <div class="wrap">
-      <h2>Antes de automatizar, eu atendo quem tem o problema</h2>
+    <section class="signature" id="experiencia" aria-labelledby="ex-titulo">
+      <div class="wrap">
+      <hr class="tooled">
+      <h2 id="ex-titulo">Antes de automatizar, eu atendo quem tem o problema</h2>
       <div class="job">
         <p class="when">out. 2023 – atual</p>
         <div>
@@ -606,157 +289,37 @@ footer p + p { margin-top: 8px; }
           </ul>
         </div>
       </div>
-      <div class="tools">
-        <div class="tool"><h3>IA e dados</h3><p>APIs de modelos de linguagem (Groq, OpenAI, Ollama), validação de saída, avaliação com métricas, detecção de anomalias</p></div>
-        <div class="tool"><h3>Automação e engenharia</h3><p>Python, pytest, Git, GitHub Actions, PyInstaller, Streamlit, automação de comandos do Windows</p></div>
-        <div class="tool"><h3>Infraestrutura</h3><p>Redes TCP/IP, DHCP, DNS, Wi-Fi, Windows, suporte ao usuário</p></div>
+      <dl class="kit">
+        <div><dt>IA e dados</dt><dd>APIs de modelos de linguagem (Groq, OpenAI, Ollama), validação de saída, avaliação com métricas, detecção de anomalias</dd></div>
+        <div><dt>Automação e engenharia</dt><dd>Python, pytest, Git, GitHub Actions, PyInstaller, Streamlit, automação de comandos do Windows</dd></div>
+        <div><dt>Infraestrutura</dt><dd>Redes TCP/IP, DHCP, DNS, Wi-Fi, Windows, suporte ao usuário</dd></div>
+      </dl>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="contato">
-    <div class="wrap">
-      <div class="contact-card">
-        <h2>Procuro minha primeira vaga remota em automação ou IA aplicada.</h2>
-        <ul class="contact-list">
-          <li><span>E-mail</span><a href="mailto:strapazzonbruno@gmail.com">strapazzonbruno@gmail.com</a></li>
-          <li><span>Telefone e WhatsApp</span><a href="tel:+5554999838415">+55 (54) 99983-8415</a></li>
-          <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/bruno-trevizan-strapazzon-7a7b24367" rel="noopener">bruno-trevizan-strapazzon</a></li>
-          <li><span>GitHub</span><a href="https://github.com/brunostrapazzon" rel="noopener">brunostrapazzon</a></li>
-        </ul>
+    <section class="signature colophon" id="contato" aria-labelledby="co-titulo">
+      <div class="wrap">
+      <hr class="tooled">
+      <h2 id="co-titulo">Procuro minha primeira vaga remota em automação ou IA aplicada.</h2>
+      <ul class="contact-list">
+        <li><span>E-mail</span><a href="mailto:strapazzonbruno@gmail.com">strapazzonbruno@gmail.com</a></li>
+        <li><span>Telefone e WhatsApp</span><a href="tel:+5554999838415">+55 (54) 99983-8415</a></li>
+        <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/bruno-trevizan-strapazzon-7a7b24367" rel="noopener">bruno-trevizan-strapazzon</a></li>
+        <li><span>GitHub</span><a href="https://github.com/brunostrapazzon" rel="noopener">brunostrapazzon</a></li>
+      </ul>
       </div>
-    </div>
-  </section>
+    </section>
+
 </main>
 
-<footer>
+<footer class="pages">
   <div class="wrap">
-    <p lang="en">In English: Computer Science student at FIAP (Brazil), English B2, IT support since 2023. I build automation and AI systems you can check: deterministic rules where a model could be wrong, tests and metrics to know when it is right. Start with <a class="inline-link" href="https://github.com/brunostrapazzon/NetDoctor">NetDoctor</a>.</p>
-    <p>Feito à mão, sem framework. <a class="inline-link" href="https://github.com/brunostrapazzon/brunostrapazzon.github.io">Código do site</a>.</p>
+    <hr class="tooled">
+    <p>Feito à mão, sem framework. <a class="link" href="https://github.com/brunostrapazzon/brunostrapazzon.github.io">Código do site</a>.</p>
+    <p lang="en">This page is also available <a class="link" href="en/" hreflang="en">in English</a>.</p>
   </div>
 </footer>
 
-<script>
-(() => {
-  // Tema: troca sem disparar transições (evita piscar elementos animados).
-  const root = document.documentElement;
-  const toggle = document.getElementById("theme-toggle");
-  const meta = document.querySelector('meta[name="theme-color"]');
-  function syncToggle() {
-    const dark = root.getAttribute("data-theme") !== "light";
-    toggle.setAttribute("aria-label", dark ? "Mudar para o tema claro" : "Mudar para o tema escuro");
-    meta.setAttribute("content", dark ? "#1b2231" : "#f4efe6");
-  }
-  toggle.addEventListener("click", () => {
-    const next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
-    root.classList.add("no-transitions");
-    root.setAttribute("data-theme", next);
-    try { localStorage.setItem("theme", next); } catch (e) {}
-    syncToggle();
-    requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove("no-transitions")));
-  });
-  syncToggle();
-})();
-
-(() => {
-  // Cada cenário: onde a cadeia para e o que o NetDoctor diria.
-  const ORDER = ["link", "dhcp", "router", "isp", "dns", "signal"];
-  const SCENARIOS = {
-    ok:     { stop: null, warn: null, sev: "ok", code: "ALL_OK",
-              title: "Sua conexão está funcionando normalmente.",
-              text: "Computador, roteador e internet da operadora responderam bem. Se um site específico não abre, o problema pode ser nele." },
-    wifi:   { stop: null, warn: "signal", sev: "warn", code: "WIFI_WEAK",
-              title: "Seu Wi-Fi está fraco neste lugar.",
-              text: "A internet chega ao roteador, mas o sinal chega fraco ao computador (38%, o ideal é acima de 50%). Aproxime-se do roteador ou use cabo." },
-    router: { stop: "router", sev: "bad", code: "GATEWAY_DOWN",
-              title: "O roteador não está respondendo.",
-              text: "O computador está conectado, mas o roteador não responde. Tire o roteador da tomada, espere 30 segundos e ligue de novo." },
-    isp:    { stop: "isp", sev: "bad", code: "ISP_DOWN",
-              title: "O roteador funciona, mas a internet da operadora não chega.",
-              text: "Não adianta mexer no computador. Ligue para a operadora e diga que o roteador está ligado e responde." },
-    dns:    { stop: "dns", sev: "bad", code: "DNS_FAIL",
-              title: "A internet chega, mas os nomes dos sites não são traduzidos.",
-              text: "Os sites não abrem pelo nome. Reinicie o roteador; se continuar, o suporte pode trocar o servidor de nomes." },
-  };
-  const STATUS = { checking: "testando…", ok: "ok", warn: "fraco", fail: "falhou", skip: "não testado" };
-
-  const chain = document.getElementById("chain");
-  const steps = Object.fromEntries([...chain.children].map((li) => [li.dataset.key, li]));
-  const verdict = document.getElementById("verdict");
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let timers = [];
-
-  function setStep(key, state) {
-    const li = steps[key];
-    if (state) li.dataset.state = state; else delete li.dataset.state;
-    li.querySelector(".status").textContent = state ? STATUS[state] : "";
-  }
-
-  function showVerdict(sc) {
-    verdict.dataset.sev = sc.sev;
-    verdict.innerHTML = "";
-    const code = document.createElement("p");
-    code.className = "code mono";
-    code.textContent = sc.code;
-    const h = document.createElement("h4");
-    h.textContent = sc.title;
-    const p = document.createElement("p");
-    p.textContent = sc.text;
-    verdict.append(code, h, p);
-    verdict.classList.remove("fresh");
-    void verdict.offsetWidth;
-    verdict.classList.add("fresh");
-  }
-
-  function finalState(sc, key, i) {
-    const stopAt = sc.stop ? ORDER.indexOf(sc.stop) : -1;
-    if (stopAt >= 0 && i > stopAt) return "skip";
-    if (key === sc.stop) return "fail";
-    if (key === sc.warn) return "warn";
-    return "ok";
-  }
-
-  function run(name, instant) {
-    timers.forEach(clearTimeout);
-    timers = [];
-    const sc = SCENARIOS[name];
-    ORDER.forEach((k) => setStep(k, null));
-    verdict.removeAttribute("data-sev");
-    verdict.innerHTML = "";
-
-    if (instant || reduce.matches) {
-      ORDER.forEach((k, i) => setStep(k, finalState(sc, k, i)));
-      showVerdict(sc);
-      return;
-    }
-    const STEP_MS = 170;
-    let t = 0;
-    ORDER.forEach((k, i) => {
-      const state = finalState(sc, k, i);
-      if (state === "skip") {
-        timers.push(setTimeout(() => setStep(k, "skip"), t));
-        return;
-      }
-      timers.push(setTimeout(() => setStep(k, "checking"), t));
-      t += STEP_MS;
-      timers.push(setTimeout(() => setStep(k, state), t));
-    });
-    timers.push(setTimeout(() => { showVerdict(sc); timers = []; }, t + 40));
-  }
-
-  document.querySelectorAll('input[name="sc"]').forEach((input) => {
-    input.addEventListener("change", () => run(input.value, false));
-  });
-
-  // Ao voltar para a aba, termina a simulação na hora em vez de retomar timers.
-  document.addEventListener("visibilitychange", () => {
-    if (!document.hidden && timers.length) {
-      run(document.querySelector('input[name="sc"]:checked').value, true);
-    }
-  });
-
-  run("ok", true);
-})();
-</script>
+<script src="assets/site.js"></script>
 </body>
 </html>
