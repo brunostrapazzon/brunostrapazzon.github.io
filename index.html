@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Bruno Strapazzon · Suporte de TI, redes e Python</title>
-<meta name="description" content="Técnico de suporte de TI e redes no RS, estudante de Ciência da Computação na FIAP. Criador do NetDoctor, que diagnostica problemas de internet e explica a causa em português simples.">
-<meta property="og:title" content="Bruno Strapazzon">
-<meta property="og:description" content="Suporte de TI e redes desde 2023. Python para automatizar o diagnóstico de rede.">
+<title>Bruno Strapazzon · Automação e IA aplicada</title>
+<meta name="description" content="Estudante de Ciência da Computação na FIAP. Construo automações e sistemas com IA que dá para conferir: regras e testes onde a IA poderia errar, métricas para saber quando ela acerta.">
+<meta property="og:title" content="Bruno Strapazzon · Automação e IA aplicada">
+<meta property="og:description" content="Automações e IA que dá para conferir. Python, modelos de linguagem, avaliação e testes.">
 <meta property="og:type" content="website">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c1b19'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%2342b883'/%3E%3C/svg%3E">
@@ -137,6 +137,9 @@ section h2 { font-size: clamp(26px, 4vw, 34px); letter-spacing: -0.02em; line-he
 .stat b { display: block; font-size: 26px; font-weight: var(--font-weight-semibold); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
 .stat span { font-size: 13px; color: var(--gray-9); line-height: 1.35; display: block; margin-top: 2px; }
 .case-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.stats-2 { grid-template-columns: repeat(2, 1fr); margin-top: 0; }
+.stats-2 .stat { padding: 20px; }
+.stats-2 .stat b { font-size: 32px; }
 
 /* Demonstração */
 .demo {
@@ -236,8 +239,7 @@ footer p + p { margin-top: 8px; }
   <div class="wrap">
     <a class="brand" href="#inicio">Bruno Strapazzon</a>
     <nav class="nav" aria-label="Seções">
-      <a href="#netdoctor">NetDoctor</a>
-      <a href="#projetos" class="hide-s">Projetos</a>
+      <a href="#projetos">Projetos</a>
       <a href="#experiencia" class="hide-s">Experiência</a>
       <a href="#contato">Contato</a>
     </nav>
@@ -246,46 +248,46 @@ footer p + p { margin-top: 8px; }
 
 <main id="inicio">
   <div class="wrap intro">
-    <p class="eyebrow">Suporte de TI e redes · Serafina Corrêa, RS</p>
-    <h1>Descubro por que a internet não funciona. Depois, escrevo o código que descobre sozinho.</h1>
-    <p class="lede">Atendo casas e empresas desde 2023 como técnico de um representante de provedor. Já configurei umas 20 redes e atendi uns 100 clientes. Estudo Ciência da Computação na FIAP e uso Python para tirar a triagem das mãos do técnico.</p>
+    <p class="eyebrow">Automação e IA aplicada · Python</p>
+    <h1>Automação e IA que dá para conferir.</h1>
+    <p class="lede">Estudo Ciência da Computação na FIAP e trabalho com suporte de TI desde 2023. Nos meus projetos, a IA entra onde ajuda; onde ela poderia errar, entram regras, testes e métricas. E quando o sistema não sabe, ele diz que não sabe.</p>
     <div class="actions">
-      <a class="btn btn-primary" href="#netdoctor">Ver o NetDoctor</a>
+      <a class="btn btn-primary" href="#projetos">Ver os projetos</a>
       <a class="btn btn-ghost" href="https://www.linkedin.com/in/bruno-trevizan-strapazzon-7a7b24367" rel="noopener">LinkedIn</a>
       <a class="btn btn-ghost" href="https://github.com/brunostrapazzon" rel="noopener">GitHub</a>
     </div>
   </div>
 
-  <section id="netdoctor">
+  <section id="projetos">
     <div class="wrap">
-      <p class="kicker">Projeto principal</p>
-      <h2>NetDoctor: o diagnóstico que eu fazia no telefone, num clique</h2>
-      <p class="section-lede">A maioria dos chamados de “minha internet não funciona” não é falha da operadora. É Wi-Fi fraco, roteador travado ou DNS. O NetDoctor testa a conexão em uns 10 segundos e explica a causa em português simples.</p>
+      <p class="kicker">Projeto 1 · automação com modelo de linguagem</p>
+      <h2>NetDoctor: regras decidem o diagnóstico, a IA só explica</h2>
+      <p class="section-lede">Saiu do meu dia a dia no suporte: a maioria dos chamados de “minha internet não funciona” é Wi-Fi fraco, roteador travado ou DNS, e descobrir isso exigia um técnico. O NetDoctor automatiza essa triagem no Windows em uns 10 segundos e explica a causa em português simples.</p>
 
       <div class="case">
         <div>
           <ul class="decisions">
             <li>
-              <h3>Quem decide são regras, não a IA</h3>
-              <p>O diagnóstico segue uma ordem fixa: o primeiro teste que falha é a causa. A IA é opcional e só reescreve a explicação. O mesmo problema sempre dá o mesmo resultado.</p>
+              <h3>A IA não decide nada</h3>
+              <p>O diagnóstico vem de regras determinísticas: o primeiro teste que falha é a causa. O modelo de linguagem (Groq, OpenAI ou Ollama local) só reescreve a explicação. O mesmo problema sempre dá o mesmo resultado.</p>
             </li>
             <li>
-              <h3>Funciona sem internet</h3>
-              <p>Que é justamente quando alguém precisa dele. As explicações vêm de textos prontos; a IA é um extra.</p>
+              <h3>A resposta da IA é validada</h3>
+              <p>Ela precisa devolver uma frase e de 1 a 3 ações, dentro do limite de tamanho. Se sair do formato, demorar ou falhar, o app usa o texto pronto, sem mostrar erro ao usuário.</p>
             </li>
             <li>
               <h3>Privacidade garantida por teste</h3>
-              <p>A IA nunca recebe o nome da rede, endereços IP, MAC ou o nome do computador. Há testes que quebram se isso acontecer.</p>
+              <p>O modelo recebe só uma lista fechada de campos: código do problema, gravidade e números. Nome da rede, IPs, MAC e nome do computador nunca saem da máquina, e há testes que quebram se isso mudar.</p>
             </li>
             <li>
-              <h3>Feito para o Windows de verdade</h3>
-              <p>Os comandos do Windows respondem diferente em português e em inglês. Cada leitura é testada com saídas reais dos dois idiomas.</p>
+              <h3>Automação de ponta a ponta</h3>
+              <p>Lê a saída dos comandos do Windows em português e em inglês, roda os testes em paralelo e é publicado sozinho: o GitHub Actions testa, gera o executável e cria o release.</p>
             </li>
           </ul>
 
           <div class="stats">
-            <div class="stat"><b>~10 s</b><span>do clique ao diagnóstico</span></div>
             <div class="stat"><b>279</b><span>testes automatizados</span></div>
+            <div class="stat"><b>3</b><span>provedores de IA, só por configuração</span></div>
             <div class="stat"><b>0</b><span>dados da rede enviados à IA</span></div>
           </div>
 
@@ -297,7 +299,7 @@ footer p + p { margin-top: 8px; }
 
         <div class="demo" aria-labelledby="demo-title">
           <div class="demo-head">
-            <h3 id="demo-title">Como ele chega à causa</h3>
+            <h3 id="demo-title">As regras, passo a passo</h3>
             <span>simulação</span>
           </div>
           <p class="demo-q" id="demo-q">Escolha um problema e veja a ordem dos testes:</p>
@@ -319,37 +321,62 @@ footer p + p { margin-top: 8px; }
           </ol>
 
           <div class="verdict" id="verdict" aria-live="polite"></div>
-          <p class="demo-foot">Simplificação das regras reais do projeto. O app também detecta portal de login e interferência.</p>
+          <p class="demo-foot">Simplificação das regras reais do projeto. A explicação acima é o texto pronto; com a IA ligada, ela reescreve só esse texto, nunca o diagnóstico.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="projetos">
+  <section id="citizen">
     <div class="wrap">
-      <p class="kicker">Outros projetos</p>
-      <h2>Na faculdade, em equipe</h2>
+      <p class="kicker">Projeto 2 · assistente avaliado com métricas</p>
+      <h2>Citizen Assist AI: um assistente que prefere não responder a chutar</h2>
+      <p class="section-lede">Orienta o cidadão sobre serviços públicos usando só fontes oficiais. Feito em equipe de 3 na Global Solution da FIAP, em 2026. Busca com índice invertido e correção de digitação, assuntos relacionados por grafo e trilhas entre temas com Dijkstra, em Python puro e funcionando offline.</p>
+      <div class="case">
+        <div>
+          <ul class="decisions">
+            <li>
+              <h3>Medido, não achado</h3>
+              <p>Um script de avaliação roda 30 perguntas de teste e calcula acerto, cobertura, abstenção e tempo de resposta. Os números abaixo são dessa execução.</p>
+            </li>
+            <li>
+              <h3>Os testes acharam o erro que importava</h3>
+              <p>A primeira versão respondia “receita de bolo” com a orientação do CPF. A segunda passou a mostrar opções com aviso de baixa confiança, ou a se abster, quando a base não sustenta a resposta.</p>
+            </li>
+            <li>
+              <h3>Duas formas de resposta, comparadas</h3>
+              <p>Um modelo direto e um com contexto e ressalvas, medidos nas mesmas perguntas: os dois trazem fonte e aviso em 100% dos casos. O com ressalvas virou o padrão.</p>
+            </li>
+          </ul>
+          <div class="case-links">
+            <a class="btn btn-primary" href="https://youtu.be/QpQYXNN09l8" rel="noopener">Ver o vídeo</a>
+            <a class="btn btn-ghost" href="https://github.com/brunostrapazzon/CITIZEN-ASSIST-AI" rel="noopener">Código no GitHub</a>
+          </div>
+        </div>
+        <div>
+          <div class="stats stats-2">
+            <div class="stat"><b>86,7%</b><span>de acerto em 30 perguntas de teste</span></div>
+            <div class="stat"><b>87,5%</b><span>das perguntas sem resposta na base, recusadas corretamente</span></div>
+            <div class="stat"><b>0</b><span>falhas técnicas na avaliação</span></div>
+            <div class="stat"><b>0,08 ms</b><span>tempo médio por consulta</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mais">
+    <div class="wrap">
+      <p class="kicker">Mais projetos</p>
+      <h2>Dados, modelos e sistemas, em equipe</h2>
       <ul class="projects">
-        <li class="project">
-          <div>
-            <h3>Citizen Assist AI</h3>
-            <p class="meta">FIAP Global Solution · 2026 · equipe de 3</p>
-          </div>
-          <div>
-            <p>Assistente que orienta o cidadão com base em fontes oficiais: busca numa base de conhecimento, grafo com Dijkstra e duas estratégias de prompt comparadas com plano de testes.</p>
-            <div class="links">
-              <a href="https://github.com/brunostrapazzon/CITIZEN-ASSIST-AI" rel="noopener">Repositório</a>
-              <a href="https://youtu.be/QpQYXNN09l8" rel="noopener">Vídeo de apresentação</a>
-            </div>
-          </div>
-        </li>
         <li class="project">
           <div>
             <h3>EV ChargeOps</h3>
             <p class="meta">Protótipo · equipe</p>
           </div>
           <div>
-            <p>Mede, valida e divide a conta de recarga de carros elétricos em condomínios. Lê o carregador via Modbus, associa a sessão à unidade por RFID e usa Isolation Forest para barrar medições suspeitas antes da cobrança. Testado com dados simulados.</p>
+            <p>Mede, valida e divide a conta de recarga de carros elétricos em condomínios. Lê o carregador via Modbus, associa a sessão à unidade por RFID e usa um modelo de detecção de anomalias (Isolation Forest) para barrar medições suspeitas antes da cobrança. Testado com dados simulados.</p>
           </div>
         </li>
         <li class="project">
@@ -383,22 +410,22 @@ footer p + p { margin-top: 8px; }
   <section id="experiencia">
     <div class="wrap">
       <p class="kicker">Experiência</p>
-      <h2>Três anos atendendo quem está sem internet</h2>
+      <h2>Antes de automatizar, eu atendo quem tem o problema</h2>
       <div class="job">
         <p class="when">2023 – atual</p>
         <div>
           <h3>Assistente de TI · AC Informática</h3>
           <ul>
-            <li>Representante de provedor em Serafina Corrêa (RS): atendo os chamados de conexão e separo o que é Wi-Fi, roteador ou DNS do que é falha da operadora.</li>
-            <li>Instalei e configurei cerca de 20 redes de empresas, casas e condomínios.</li>
-            <li>Gerencio redes internas de clientes e faço a manutenção de notebooks, computadores e impressoras.</li>
+            <li>Suporte técnico e redes numa empresa que representa um provedor de internet em Serafina Corrêa (RS): cerca de 100 clientes atendidos e 20 redes configuradas.</li>
+            <li>É de onde vêm os problemas que eu automatizo. O NetDoctor nasceu do padrão que mais se repetia nos chamados.</li>
+            <li>Também faço manutenção de computadores e impressoras e gerencio redes internas de clientes.</li>
           </ul>
         </div>
       </div>
       <div class="tools">
-        <div><h3>Redes</h3><p>TCP/IP, DHCP, DNS, Wi-Fi, roteadores, cabeamento, ping, tracert, netsh</p></div>
-        <div><h3>Suporte</h3><p>Windows, formatação e instalação, notebooks, computadores, impressoras</p></div>
-        <div><h3>Código</h3><p>Python, pytest, Git, GitHub Actions, PyInstaller, APIs de modelos de linguagem</p></div>
+        <div><h3>IA e dados</h3><p>APIs de modelos de linguagem (Groq, OpenAI, Ollama), validação de saída, avaliação com métricas, detecção de anomalias</p></div>
+        <div><h3>Automação e engenharia</h3><p>Python, pytest, Git, GitHub Actions, PyInstaller, Streamlit, automação de comandos do Windows</p></div>
+        <div><h3>Infraestrutura</h3><p>Redes TCP/IP, DHCP, DNS, Wi-Fi, Windows, suporte ao usuário</p></div>
       </div>
     </div>
   </section>
@@ -406,8 +433,8 @@ footer p + p { margin-top: 8px; }
   <section id="contato" class="contact">
     <div class="wrap">
       <p class="kicker">Contato</p>
-      <h2>Procuro minha primeira vaga remota em suporte, redes ou automação.</h2>
-      <p class="section-lede">Ciência da Computação na FIAP (2026–2029), bolsista pelo ENEM. Inglês B2 (TOEFL ITP). O jeito mais rápido de falar comigo é pelo LinkedIn.</p>
+      <h2>Procuro minha primeira vaga remota em automação ou IA aplicada.</h2>
+      <p class="section-lede">Ciência da Computação na FIAP (2026–2029), bolsista pelo ENEM. Inglês B2 (TOEFL ITP). Duas medalhas de bronze na OBMEP. O jeito mais rápido de falar comigo é pelo LinkedIn.</p>
       <div class="actions">
         <a class="btn btn-primary" href="https://www.linkedin.com/in/bruno-trevizan-strapazzon-7a7b24367" rel="noopener">Falar pelo LinkedIn</a>
         <a class="btn btn-ghost" href="https://github.com/brunostrapazzon" rel="noopener">GitHub</a>
@@ -418,7 +445,7 @@ footer p + p { margin-top: 8px; }
 
 <footer>
   <div class="wrap">
-    <p lang="en">In English: IT support and networking technician in southern Brazil since 2023, Computer Science student at FIAP, English B2. I build Python tools that automate network troubleshooting. Start with <a class="inline-link" href="https://github.com/brunostrapazzon/NetDoctor">NetDoctor</a>.</p>
+    <p lang="en">In English: Computer Science student at FIAP (Brazil), English B2, IT support since 2023. I build automation and AI systems you can check: deterministic rules where a model could be wrong, tests and metrics to know when it is right. Start with <a class="inline-link" href="https://github.com/brunostrapazzon/NetDoctor">NetDoctor</a>.</p>
     <p>Feito à mão, sem framework. Código em <a class="inline-link" href="https://github.com/brunostrapazzon/brunostrapazzon.github.io">github.com/brunostrapazzon</a>.</p>
   </div>
 </footer>
