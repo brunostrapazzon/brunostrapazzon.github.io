@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bruno Strapazzon · Suporte de TI, redes e Python</title>
+<meta name="description" content="Técnico de suporte de TI e redes no RS, estudante de Ciência da Computação na FIAP. Criador do NetDoctor, que diagnostica problemas de internet e explica a causa em português simples.">
+<meta property="og:title" content="Bruno Strapazzon">
+<meta property="og:description" content="Suporte de TI e redes desde 2023. Python para automatizar o diagnóstico de rede.">
+<meta property="og:type" content="website">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c1b19'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%2342b883'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root {
+  --gray-1: #f7f6f2;
+  --gray-2: #efede6;
+  --gray-3: #e4e1d8;
+  --gray-6: #c9c5b9;
+  --gray-9: #7a766b;
+  --gray-11: #57544b;
+  --gray-12: #1c1b19;
+  --ok: #1f7a4d;
+  --ok-bg: #e3f1e8;
+  --warn: #8a5a00;
+  --warn-bg: #f6ecd6;
+  --bad: #b3261e;
+  --bad-bg: #f7e1de;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --z-header: 100;
+  --border-hairline: 1px;
+  --header-h: 56px;
+}
+@media only screen and (min-resolution: 192dpi) {
+  :root { --border-hairline: 0.5px; }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gray-1: #161614;
+    --gray-2: #1e1d1b;
+    --gray-3: #2a2926;
+    --gray-6: #45433e;
+    --gray-9: #8f8b80;
+    --gray-11: #b5b1a6;
+    --gray-12: #f2f0ea;
+    --ok: #5fcf95;
+    --ok-bg: #16291f;
+    --warn: #e8b64c;
+    --warn-bg: #2d2514;
+    --bad: #f0857c;
+    --bad-bg: #331b19;
+  }
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--gray-1);
+  color: var(--gray-12);
+  font: var(--font-weight-normal) 17px/1.6 "IBM Plex Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+h1, h2, h3 { text-wrap: balance; margin: 0; font-weight: var(--font-weight-semibold); }
+p { margin: 0; }
+a { color: inherit; }
+button, a, label { touch-action: manipulation; }
+[id] { scroll-margin-top: calc(var(--header-h) + 16px); }
+.mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+/* Cabeçalho */
+.top {
+  position: sticky; top: 0; z-index: var(--z-header);
+  background: color-mix(in srgb, var(--gray-1) 88%, transparent);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 var(--border-hairline) 0 var(--gray-3);
+}
+.top .wrap { height: var(--header-h); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.brand { min-height: 44px; display: inline-flex; align-items: center; font-weight: var(--font-weight-semibold); text-decoration: none; letter-spacing: -0.01em; }
+.nav { display: flex; gap: 4px; }
+.nav a {
+  min-height: 44px; display: inline-flex; align-items: center; padding: 0 10px;
+  color: var(--gray-11); text-decoration: none; font-size: 15px; border-radius: 8px;
+  transition: color 150ms ease, background-color 150ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .nav a:hover { color: var(--gray-12); background: var(--gray-2); }
+}
+@media (max-width: 560px) { .nav .hide-s { display: none; } }
+
+/* Abertura */
+.intro { padding: 72px 0 56px; }
+.eyebrow { font-size: 14px; color: var(--gray-9); letter-spacing: 0.01em; margin-bottom: 20px; }
+.intro h1 { font-size: clamp(34px, 6vw, 56px); line-height: 1.08; letter-spacing: -0.025em; max-width: 17ch; }
+.intro .lede { font-size: 19px; color: var(--gray-11); max-width: 56ch; margin-top: 24px; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.btn {
+  min-height: 44px; display: inline-flex; align-items: center; gap: 8px; padding: 0 18px;
+  border-radius: 10px; font: inherit; font-size: 16px; font-weight: var(--font-weight-medium);
+  text-decoration: none; cursor: pointer; border: 0;
+  transition: transform 120ms var(--ease-out-quart), background-color 150ms ease;
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary { background: var(--gray-12); color: var(--gray-1); }
+.btn-ghost { background: transparent; color: var(--gray-12); box-shadow: inset 0 0 0 1px var(--gray-6); }
+@media (hover: hover) and (pointer: fine) {
+  .btn-ghost:hover { background: var(--gray-2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn, .nav a { transition: none; }
+}
+
+/* Seções */
+section { padding: 56px 0; box-shadow: 0 calc(var(--border-hairline) * -1) 0 var(--gray-3); }
+.kicker { font-size: 13px; color: var(--gray-9); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+section h2 { font-size: clamp(26px, 4vw, 34px); letter-spacing: -0.02em; line-height: 1.15; max-width: 24ch; }
+.section-lede { color: var(--gray-11); max-width: 60ch; margin-top: 14px; }
+
+/* NetDoctor */
+.case { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 36px; }
+@media (min-width: 880px) { .case { grid-template-columns: 1fr 1.08fr; gap: 56px; } }
+.decisions { list-style: none; padding: 0; margin: 0; display: grid; gap: 22px; }
+.decisions h3 { font-size: 17px; font-weight: var(--font-weight-semibold); }
+.decisions p { color: var(--gray-11); margin-top: 4px; font-size: 16px; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 32px; background: var(--gray-3); border-radius: 12px; overflow: hidden; box-shadow: 0 0 0 var(--border-hairline) var(--gray-3); }
+.stat { background: var(--gray-1); padding: 16px; }
+.stat b { display: block; font-size: 26px; font-weight: var(--font-weight-semibold); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 13px; color: var(--gray-9); line-height: 1.35; display: block; margin-top: 2px; }
+.case-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+
+/* Demonstração */
+.demo {
+  background: var(--gray-2); border-radius: 16px; padding: 20px;
+  box-shadow: 0 0 0 var(--border-hairline) var(--gray-3);
+  isolation: isolate;
+}
+.demo-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.demo-head h3 { font-size: 16px; }
+.demo-head span { font-size: 12px; color: var(--gray-9); }
+.demo-q { font-size: 14px; color: var(--gray-11); margin: 14px 0 8px; }
+.scenarios { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.scenarios label {
+  position: relative; min-height: 44px; display: inline-flex; align-items: center; padding: 0 14px;
+  border-radius: 999px; font-size: 14px; cursor: pointer; user-select: none;
+  background: var(--gray-1); box-shadow: inset 0 0 0 1px var(--gray-3); color: var(--gray-11);
+  transition: background-color 150ms ease, color 150ms ease, transform 120ms var(--ease-out-quart);
+}
+.scenarios label:active { transform: scale(0.97); }
+.scenarios input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.scenarios label:has(input:checked) { background: var(--gray-12); color: var(--gray-1); box-shadow: none; }
+.scenarios label:has(input:focus-visible) { outline: 2px solid var(--gray-12); outline-offset: 2px; }
+@media (hover: hover) and (pointer: fine) {
+  .scenarios label:not(:has(input:checked)):hover { color: var(--gray-12); }
+}
+@media (prefers-reduced-motion: reduce) { .scenarios label { transition: none; } }
+
+.chain { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 2px; }
+.step {
+  display: grid; grid-template-columns: 22px 1fr auto; align-items: center; gap: 12px;
+  min-height: 40px; padding: 0 12px; border-radius: 10px; background: var(--gray-1);
+  font-size: 15px;
+}
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gray-6); justify-self: center; transition: background-color 150ms ease, transform 200ms var(--ease-out-quart); }
+.step .what small { display: block; font-size: 12px; color: var(--gray-9); line-height: 1.2; }
+.status { font-size: 13px; color: var(--gray-9); min-width: 9ch; text-align: right; }
+.step[data-state="checking"] .dot { background: var(--gray-9); transform: scale(1.3); }
+.step[data-state="ok"] .dot { background: var(--ok); }
+.step[data-state="ok"] .status { color: var(--ok); }
+.step[data-state="warn"] .dot { background: var(--warn); }
+.step[data-state="warn"] .status { color: var(--warn); }
+.step[data-state="fail"] .dot { background: var(--bad); }
+.step[data-state="fail"] .status { color: var(--bad); }
+.step[data-state="skip"] { color: var(--gray-9); }
+@media (prefers-reduced-motion: reduce) { .dot { transition: none; } }
+
+.verdict {
+  margin-top: 14px; border-radius: 12px; padding: 16px; background: var(--gray-1);
+  min-height: 148px; box-shadow: inset 4px 0 0 var(--gray-6);
+}
+.verdict[data-sev="ok"] { box-shadow: inset 4px 0 0 var(--ok); }
+.verdict[data-sev="warn"] { box-shadow: inset 4px 0 0 var(--warn); }
+.verdict[data-sev="bad"] { box-shadow: inset 4px 0 0 var(--bad); }
+.verdict .code { font-size: 12px; color: var(--gray-9); }
+.verdict h4 { margin: 6px 0 6px; font-size: 17px; font-weight: var(--font-weight-semibold); text-wrap: balance; }
+.verdict p { font-size: 15px; color: var(--gray-11); }
+.verdict.fresh { animation: settle 220ms var(--ease-out-quart); }
+@keyframes settle { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .verdict.fresh { animation: none; } }
+.demo-foot { font-size: 12px; color: var(--gray-9); margin-top: 12px; }
+
+/* Projetos */
+.projects { list-style: none; padding: 0; margin: 32px 0 0; }
+.project { display: grid; grid-template-columns: 1fr; gap: 6px 32px; padding: 22px 0; box-shadow: 0 calc(var(--border-hairline) * -1) 0 var(--gray-3); }
+.project:first-child { box-shadow: none; padding-top: 0; }
+@media (min-width: 760px) { .project { grid-template-columns: 220px 1fr; } }
+.project h3 { font-size: 18px; }
+.project .meta { font-size: 13px; color: var(--gray-9); margin-top: 2px; }
+.project p { color: var(--gray-11); font-size: 16px; }
+.project .links { display: flex; gap: 4px 16px; flex-wrap: wrap; margin-top: 8px; font-size: 15px; }
+.project .links a, .inline-link { min-height: 44px; display: inline-flex; align-items: center; text-underline-offset: 3px; text-decoration-color: var(--gray-6); transition: text-decoration-color 150ms ease; }
+@media (hover: hover) and (pointer: fine) {
+  .project .links a:hover, .inline-link:hover { text-decoration-color: currentColor; }
+}
+@media (prefers-reduced-motion: reduce) { .project .links a, .inline-link { transition: none; } }
+
+/* Experiência */
+.job { margin-top: 32px; display: grid; grid-template-columns: 1fr; gap: 8px 32px; }
+@media (min-width: 760px) { .job { grid-template-columns: 220px 1fr; } }
+.job .when { font-size: 14px; color: var(--gray-9); font-variant-numeric: tabular-nums; }
+.job h3 { font-size: 18px; }
+.job ul { margin: 10px 0 0; padding-left: 18px; color: var(--gray-11); font-size: 16px; display: grid; gap: 6px; }
+.tools { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 40px; }
+@media (min-width: 760px) { .tools { grid-template-columns: repeat(3, 1fr); } }
+.tools h3 { font-size: 14px; color: var(--gray-9); font-weight: var(--font-weight-medium); }
+.tools p { font-size: 15px; margin-top: 4px; }
+
+/* Contato */
+.contact h2 { max-width: 20ch; }
+footer { padding: 32px 0 48px; color: var(--gray-9); font-size: 14px; }
+footer p + p { margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio">Bruno Strapazzon</a>
+    <nav class="nav" aria-label="Seções">
+      <a href="#netdoctor">NetDoctor</a>
+      <a href="#projetos" class="hide-s">Projetos</a>
+      <a href="#experiencia" class="hide-s">Experiência</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="wrap intro">
+    <p class="eyebrow">Suporte de TI e redes · Serafina Corrêa, RS</p>
+    <h1>Descubro por que a internet não funciona. Depois, escrevo o código que descobre sozinho.</h1>
+    <p class="lede">Atendo casas e empresas desde 2023 como técnico de um representante de provedor. Já configurei umas 20 redes e atendi uns 100 clientes. Estudo Ciência da Computação na FIAP e uso Python para tirar a triagem das mãos do técnico.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#netdoctor">Ver o NetDoctor</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/bruno-trevizan-strapazzon-7a7b24367" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/brunostrapazzon" rel="noopener">GitHub</a>
+    </div>
+  </div>
+
+  <section id="netdoctor">
+    <div class="wrap">
+      <p class="kicker">Projeto principal</p>
+      <h2>NetDoctor: o diagnóstico que eu fazia no telefone, num clique</h2>
+      <p class="section-lede">A maioria dos chamados de “minha internet não funciona” não é falha da operadora. É Wi-Fi fraco, roteador travado ou DNS. O NetDoctor testa a conexão em uns 10 segundos e explica a causa em português simples.</p>
+
+      <div class="case">
+        <div>
+          <ul class="decisions">
+            <li>
+              <h3>Quem decide são regras, não a IA</h3>
+              <p>O diagnóstico segue uma ordem fixa: o primeiro teste que falha é a causa. A IA é opcional e só reescreve a explicação. O mesmo problema sempre dá o mesmo resultado.</p>
+            </li>
+            <li>
+              <h3>Funciona sem internet</h3>
+              <p>Que é justamente quando alguém precisa dele. As explicações vêm de textos prontos; a IA é um extra.</p>
+            </li>
+            <li>
+              <h3>Privacidade garantida por teste</h3>
+              <p>A IA nunca recebe o nome da rede, endereços IP, MAC ou o nome do computador. Há testes que quebram se isso acontecer.</p>
+            </li>
+            <li>
+              <h3>Feito para o Windows de verdade</h3>
+              <p>Os comandos do Windows respondem diferente em português e em inglês. Cada leitura é testada com saídas reais dos dois idiomas.</p>
+            </li>
+          </ul>
+
+          <div class="stats">
+            <div class="stat"><b>~10 s</b><span>do clique ao diagnóstico</span></div>
+            <div class="stat"><b>279</b><span>testes automatizados</span></div>
+            <div class="stat"><b>0</b><span>dados da rede enviados à IA</span></div>
+          </div>
+
+          <div class="case-links">
+            <a class="btn btn-primary" href="https://github.com/brunostrapazzon/NetDoctor/releases/latest" rel="noopener">Baixar para Windows</a>
+            <a class="btn btn-ghost" href="https://github.com/brunostrapazzon/NetDoctor" rel="noopener">Código no GitHub</a>
+          </div>
+        </div>
+
+        <div class="demo" aria-labelledby="demo-title">
+          <div class="demo-head">
+            <h3 id="demo-title">Como ele chega à causa</h3>
+            <span>simulação</span>
+          </div>
+          <p class="demo-q" id="demo-q">Escolha um problema e veja a ordem dos testes:</p>
+          <fieldset class="scenarios" aria-labelledby="demo-q">
+            <label><input type="radio" name="sc" value="ok" checked>Tudo certo</label>
+            <label><input type="radio" name="sc" value="wifi">Wi-Fi fraco</label>
+            <label><input type="radio" name="sc" value="router">Roteador travado</label>
+            <label><input type="radio" name="sc" value="isp">Operadora fora</label>
+            <label><input type="radio" name="sc" value="dns">DNS</label>
+          </fieldset>
+
+          <ol class="chain" id="chain">
+            <li class="step" data-key="link"><span class="dot" aria-hidden="true"></span><span class="what">Computador conectado<small>cabo ou Wi-Fi ligado</small></span><span class="status mono"></span></li>
+            <li class="step" data-key="dhcp"><span class="dot" aria-hidden="true"></span><span class="what">Endereço recebido<small>o roteador entregou um IP</small></span><span class="status mono"></span></li>
+            <li class="step" data-key="router"><span class="dot" aria-hidden="true"></span><span class="what">Roteador responde<small>ping no roteador</small></span><span class="status mono"></span></li>
+            <li class="step" data-key="isp"><span class="dot" aria-hidden="true"></span><span class="what">Internet da operadora<small>ping fora de casa</small></span><span class="status mono"></span></li>
+            <li class="step" data-key="dns"><span class="dot" aria-hidden="true"></span><span class="what">Nomes dos sites<small>DNS traduz endereços</small></span><span class="status mono"></span></li>
+            <li class="step" data-key="signal"><span class="dot" aria-hidden="true"></span><span class="what">Sinal do Wi-Fi<small>força e interferência</small></span><span class="status mono"></span></li>
+          </ol>
+
+          <div class="verdict" id="verdict" aria-live="polite"></div>
+          <p class="demo-foot">Simplificação das regras reais do projeto. O app também detecta portal de login e interferência.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <div class="wrap">
+      <p class="kicker">Outros projetos</p>
+      <h2>Na faculdade, em equipe</h2>
+      <ul class="projects">
+        <li class="project">
+          <div>
+            <h3>Citizen Assist AI</h3>
+            <p class="meta">FIAP Global Solution · 2026 · equipe de 3</p>
+          </div>
+          <div>
+            <p>Assistente que orienta o cidadão com base em fontes oficiais: busca numa base de conhecimento, grafo com Dijkstra e duas estratégias de prompt comparadas com plano de testes.</p>
+            <div class="links">
+              <a href="https://github.com/brunostrapazzon/CITIZEN-ASSIST-AI" rel="noopener">Repositório</a>
+              <a href="https://youtu.be/QpQYXNN09l8" rel="noopener">Vídeo de apresentação</a>
+            </div>
+          </div>
+        </li>
+        <li class="project">
+          <div>
+            <h3>EV ChargeOps</h3>
+            <p class="meta">Protótipo · equipe</p>
+          </div>
+          <div>
+            <p>Mede, valida e divide a conta de recarga de carros elétricos em condomínios. Lê o carregador via Modbus, associa a sessão à unidade por RFID e usa Isolation Forest para barrar medições suspeitas antes da cobrança. Testado com dados simulados.</p>
+          </div>
+        </li>
+        <li class="project">
+          <div>
+            <h3>Monitoramento ARES-VII</h3>
+            <p class="meta">FIAP Global Solution · 2026 · equipe de 3</p>
+          </div>
+          <div>
+            <p>Lê a telemetria de uma missão simulada em Marte, prioriza alertas com fila e pilha e prevê a reserva de energia com uma regressão linear feita à mão, em Python puro.</p>
+            <div class="links">
+              <a href="https://github.com/brunostrapazzon/Global-Solution---1-Semestre-" rel="noopener">Repositório</a>
+            </div>
+          </div>
+        </li>
+        <li class="project">
+          <div>
+            <h3>SCIC Aurora Siger</h3>
+            <p class="meta">FIAP · protótipo acadêmico</p>
+          </div>
+          <div>
+            <p>Análise de latência, previsão, priorização de alertas com heap e busca por prefixo com trie.</p>
+            <div class="links">
+              <a href="https://github.com/brunostrapazzon/scic-aurora-siger" rel="noopener">Repositório</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="experiencia">
+    <div class="wrap">
+      <p class="kicker">Experiência</p>
+      <h2>Três anos atendendo quem está sem internet</h2>
+      <div class="job">
+        <p class="when">2023 – atual</p>
+        <div>
+          <h3>Assistente de TI · AC Informática</h3>
+          <ul>
+            <li>Representante de provedor em Serafina Corrêa (RS): atendo os chamados de conexão e separo o que é Wi-Fi, roteador ou DNS do que é falha da operadora.</li>
+            <li>Instalei e configurei cerca de 20 redes de empresas, casas e condomínios.</li>
+            <li>Gerencio redes internas de clientes e faço a manutenção de notebooks, computadores e impressoras.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tools">
+        <div><h3>Redes</h3><p>TCP/IP, DHCP, DNS, Wi-Fi, roteadores, cabeamento, ping, tracert, netsh</p></div>
+        <div><h3>Suporte</h3><p>Windows, formatação e instalação, notebooks, computadores, impressoras</p></div>
+        <div><h3>Código</h3><p>Python, pytest, Git, GitHub Actions, PyInstaller, APIs de modelos de linguagem</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="contact">
+    <div class="wrap">
+      <p class="kicker">Contato</p>
+      <h2>Procuro minha primeira vaga remota em suporte, redes ou automação.</h2>
+      <p class="section-lede">Ciência da Computação na FIAP (2026–2029), bolsista pelo ENEM. Inglês B2 (TOEFL ITP). O jeito mais rápido de falar comigo é pelo LinkedIn.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://www.linkedin.com/in/bruno-trevizan-strapazzon-7a7b24367" rel="noopener">Falar pelo LinkedIn</a>
+        <a class="btn btn-ghost" href="https://github.com/brunostrapazzon" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p lang="en">In English: IT support and networking technician in southern Brazil since 2023, Computer Science student at FIAP, English B2. I build Python tools that automate network troubleshooting. Start with <a class="inline-link" href="https://github.com/brunostrapazzon/NetDoctor">NetDoctor</a>.</p>
+    <p>Feito à mão, sem framework. Código em <a class="inline-link" href="https://github.com/brunostrapazzon/brunostrapazzon.github.io">github.com/brunostrapazzon</a>.</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  // Cada cenário: onde a cadeia para e o que o NetDoctor diria.
+  const ORDER = ["link", "dhcp", "router", "isp", "dns", "signal"];
+  const SCENARIOS = {
+    ok:     { stop: null, warn: null, sev: "ok", code: "ALL_OK",
+              title: "Sua conexão está funcionando normalmente.",
+              text: "Computador, roteador e internet da operadora responderam bem. Se um site específico não abre, o problema pode ser nele." },
+    wifi:   { stop: null, warn: "signal", sev: "warn", code: "WIFI_WEAK",
+              title: "Seu Wi-Fi está fraco neste lugar.",
+              text: "A internet chega ao roteador, mas o sinal chega fraco ao computador (38%, o ideal é acima de 50%). Aproxime-se do roteador ou use cabo." },
+    router: { stop: "router", sev: "bad", code: "GATEWAY_DOWN",
+              title: "O roteador não está respondendo.",
+              text: "O computador está conectado, mas o roteador não responde. Tire o roteador da tomada, espere 30 segundos e ligue de novo." },
+    isp:    { stop: "isp", sev: "bad", code: "ISP_DOWN",
+              title: "O roteador funciona, mas a internet da operadora não chega.",
+              text: "Não adianta mexer no computador. Ligue para a operadora e diga que o roteador está ligado e responde." },
+    dns:    { stop: "dns", sev: "bad", code: "DNS_FAIL",
+              title: "A internet chega, mas os nomes dos sites não são traduzidos.",
+              text: "Os sites não abrem pelo nome. Reinicie o roteador; se continuar, o suporte pode trocar o servidor de nomes." },
+  };
+  const STATUS = { checking: "testando…", ok: "ok", warn: "fraco", fail: "falhou", skip: "não testado" };
+
+  const chain = document.getElementById("chain");
+  const steps = Object.fromEntries([...chain.children].map((li) => [li.dataset.key, li]));
+  const verdict = document.getElementById("verdict");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let timers = [];
+
+  function setStep(key, state) {
+    const li = steps[key];
+    if (state) li.dataset.state = state; else delete li.dataset.state;
+    li.querySelector(".status").textContent = state ? STATUS[state] : "";
+  }
+
+  function showVerdict(sc) {
+    verdict.dataset.sev = sc.sev;
+    verdict.innerHTML = "";
+    const code = document.createElement("p");
+    code.className = "code mono";
+    code.textContent = sc.code;
+    const h = document.createElement("h4");
+    h.textContent = sc.title;
+    const p = document.createElement("p");
+    p.textContent = sc.text;
+    verdict.append(code, h, p);
+    verdict.classList.remove("fresh");
+    void verdict.offsetWidth;
+    verdict.classList.add("fresh");
+  }
+
+  function finalState(sc, key, i) {
+    const stopAt = sc.stop ? ORDER.indexOf(sc.stop) : -1;
+    if (stopAt >= 0 && i > stopAt) return "skip";
+    if (key === sc.stop) return "fail";
+    if (key === sc.warn) return "warn";
+    return "ok";
+  }
+
+  function run(name, instant) {
+    timers.forEach(clearTimeout);
+    timers = [];
+    const sc = SCENARIOS[name];
+    ORDER.forEach((k) => setStep(k, null));
+    verdict.removeAttribute("data-sev");
+    verdict.innerHTML = "";
+
+    if (instant || reduce.matches) {
+      ORDER.forEach((k, i) => setStep(k, finalState(sc, k, i)));
+      showVerdict(sc);
+      return;
+    }
+    const STEP_MS = 170;
+    let t = 0;
+    ORDER.forEach((k, i) => {
+      const state = finalState(sc, k, i);
+      if (state === "skip") {
+        timers.push(setTimeout(() => setStep(k, "skip"), t));
+        return;
+      }
+      timers.push(setTimeout(() => setStep(k, "checking"), t));
+      t += STEP_MS;
+      timers.push(setTimeout(() => setStep(k, state), t));
+    });
+    timers.push(setTimeout(() => { showVerdict(sc); timers = []; }, t + 40));
+  }
+
+  document.querySelectorAll('input[name="sc"]').forEach((input) => {
+    input.addEventListener("change", () => run(input.value, false));
+  });
+
+  // Ao voltar para a aba, termina a simulação na hora em vez de retomar timers.
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && timers.length) {
+      run(document.querySelector('input[name="sc"]:checked').value, true);
+    }
+  });
+
+  run("ok", true);
+})();
+</script>
+</body>
+</html>
