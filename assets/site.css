@@ -2,6 +2,18 @@
    Capa de tecido azul-marinho, linha de linho no azul do Grêmio,
    páginas de papel de trapo. O escuro é o padrão. */
 
+/* Fontes hospedadas no próprio site (SIL OFL, ver fonts/LICENSE.txt). */
+@font-face { font-family: "Alegreya Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/alegreya-sans-400-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Alegreya Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/alegreya-sans-400-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Alegreya Sans"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/alegreya-sans-500-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Alegreya Sans"; font-style: normal; font-weight: 500; font-display: swap; src: url("fonts/alegreya-sans-500-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Alegreya Sans"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/alegreya-sans-700-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Alegreya Sans"; font-style: normal; font-weight: 700; font-display: swap; src: url("fonts/alegreya-sans-700-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/jetbrains-mono-400-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "JetBrains Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/jetbrains-mono-400-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Marcellus"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/marcellus-400-latin-ext.woff2") format("woff2"); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: "Marcellus"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/marcellus-400-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
 :root {
   /* Escuro: capa marinho profundo, páginas marinho suave, tinta creme. */
   --page: #1b2231;
@@ -155,7 +167,9 @@ button, a, label { touch-action: manipulation; }
 }
 .index a[aria-current="true"] { color: var(--board-ink); }
 .index a[aria-current="true"]::before { background: var(--thread); box-shadow: none; }
+.rail-body { display: flex; flex-direction: column; flex: 1; min-height: 0; }
 .rail-tools { margin-top: auto; display: flex; gap: 6px; align-items: center; }
+.rail .menu-btn { display: none; }
 .tool-btn {
   min-width: 44px; height: 44px; display: inline-grid; place-items: center; padding: 0 10px;
   border: 0; border-radius: 8px; background: transparent; color: var(--board-ink-2);
@@ -176,12 +190,12 @@ button, a, label { touch-action: manipulation; }
 /* ===== Páginas ===== */
 .pages { margin-left: var(--rail-w); padding: 0 clamp(28px, 5vw, 72px); }
 .wrap { max-width: 920px; margin-left: auto; margin-right: auto; }
-.signature { padding: 88px 0 80px; }
+.signature { padding: 64px 0 56px; }
 .signature + .signature { padding-top: 0; }
-.signature .wrap > .tooled { margin-bottom: 72px; }
+.signature .wrap > .tooled { margin-bottom: 52px; }
 
 /* Folha de rosto */
-.title-page { padding: 96px 0 88px; display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 56px; align-items: center; }
+.title-page { padding: 88px 0 72px; display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 56px; align-items: start; }
 h1 {
   font-family: var(--display); font-weight: 400; font-size: clamp(31px, 4.1vw, 54px);
   line-height: 1.1; letter-spacing: 0.05em; text-transform: uppercase; max-width: 15ch;
@@ -236,6 +250,7 @@ h1 .thread { color: var(--accent); }
 .corner.tr { top: 4px; right: 4px; clip-path: polygon(0 0, 100% 0, 100% 100%); }
 .corner.bl { bottom: 4px; left: 4px; clip-path: polygon(0 0, 0 100%, 100% 100%); }
 .corner.br { bottom: 4px; right: 4px; clip-path: polygon(100% 0, 100% 100%, 0 100%); }
+.portrait { margin-top: 6px; }
 .portrait img { aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 18%; }
 
 /* Seções */
@@ -336,6 +351,16 @@ h2 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 3.6vw
   .shot:hover img { transform: scale(1.02); }
 }
 .shot .plate-inner { overflow: hidden; display: block; }
+.viewer {
+  border: 0; padding: 0; background: transparent; max-width: min(1100px, 94vw); max-height: 94vh; overflow: visible;
+}
+.viewer::backdrop { background: rgba(8, 11, 18, 0.78); }
+.viewer[open] { animation: open-plate 200ms var(--ease-out); }
+@keyframes open-plate { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: none; } }
+.viewer .plate { padding: 14px; }
+.viewer img { max-height: calc(94vh - 28px); width: auto; max-width: 100%; margin: 0 auto; }
+.viewer-close { position: absolute; top: -14px; right: -14px; z-index: 2; background: var(--board); color: var(--board-ink); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18); }
+.viewer-close svg { width: 18px; height: 18px; }
 .plates-note { margin-top: 18px; font-size: 15px; color: var(--ink-3); }
 
 /* Sumário de projetos */
@@ -384,20 +409,31 @@ h2 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 3.6vw
   transition: color 150ms ease, text-decoration-color 150ms ease;
 }
 @media (hover: hover) and (pointer: fine) { .contact-list a:hover { color: var(--accent); text-decoration-color: currentColor; } }
+.contact-list li.has-copy { grid-template-columns: 200px minmax(0, 1fr) auto; }
+.copy {
+  min-height: 44px; min-width: 88px; padding: 0 14px; border: 0; border-radius: 3px; cursor: pointer;
+  font: 500 15px var(--text); letter-spacing: 0.02em; color: var(--ink-2); background: transparent;
+  box-shadow: inset 0 0 0 1px var(--rule);
+  transition: color 150ms ease, background-color 150ms ease, transform 120ms var(--ease-out);
+}
+.copy:active { transform: scale(0.96); }
+.copy[data-done] { color: var(--ok); box-shadow: inset 0 0 0 1px var(--ok); }
+@media (hover: hover) and (pointer: fine) { .copy:hover { color: var(--ink); background: var(--page-2); } }
 
 footer.pages { padding-top: 40px; padding-bottom: 64px; color: var(--ink-3); font-size: 15px; }
-footer .tooled { margin-bottom: 28px; }
+footer .closing { display: block; position: relative; height: 18px; margin-bottom: 28px; background: var(--thread-ink); }
 footer p + p { margin-top: 6px; }
 
 /* Entrada única ao carregar (nada se mexe com a rolagem) */
 .enter { animation: enter 520ms var(--ease-out) both; }
 .enter-2 { animation-delay: 70ms; }
 .enter-3 { animation-delay: 140ms; }
+@keyframes sheet { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 @keyframes enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .enter, .verdict.fresh { animation: none; }
-  .btn, .tool-btn, .index a, .scenarios label, .seg, .shot, .shot img, .link, .contact-list a { transition: none; }
+  .enter, .verdict.fresh, .rail[data-open] .rail-body, .viewer[open] { animation: none; }
+  .btn, .tool-btn, .index a, .scenarios label, .seg, .shot, .shot img, .link, .contact-list a, .copy { transition: none; }
 }
 
 /* ===== Tablet e celular: a capa vira barra no topo ===== */
@@ -411,15 +447,25 @@ footer p + p { margin-top: 6px; }
   .rail::after { display: none; }
   .rail .stitch-x { position: absolute; left: 0; right: 0; bottom: -9px; height: 18px; display: block; }
   .brand-name { font-size: 19px; white-space: nowrap; text-transform: none; letter-spacing: 0.02em; }
-  .brand-role, .index { display: none; }
-  .rail-tools { margin-top: 0; gap: 2px; }
-  .bar-contact { display: inline-grid; }
+  .brand { margin-right: auto; }
+  .brand-role { display: none; }
+  .rail .bar-contact, .rail .menu-btn { display: inline-grid; }
+  .rail-body {
+    display: none; position: absolute; left: 0; right: 0; top: calc(100% + 9px);
+    padding: 8px 16px 16px; background: var(--board);
+    box-shadow: 0 18px 30px -18px var(--gutter);
+  }
+  .rail[data-open] .rail-body { display: flex; animation: sheet 180ms var(--ease-out); }
+  .rail .index { margin: 0; }
+  .rail-tools { margin-top: 12px; gap: 8px; }
+  .menu-btn[aria-expanded="true"] { color: var(--board-ink); background: rgba(255, 255, 255, 0.08); }
   .tool-btn { box-shadow: none; }
   .pages { margin-left: 0; padding: 0 20px; }
   .title-page { grid-template-columns: minmax(0, 1fr) 220px; gap: 36px; padding: 64px 0 64px; }
   .case, .edu { grid-template-columns: minmax(0, 1fr); gap: 40px; }
-  .signature { padding: 64px 0; }
-  .signature .wrap > .tooled { margin-bottom: 56px; }
+  .signature { padding: 48px 0; }
+  .signature .wrap > .tooled { margin-bottom: 40px; }
+  [id] { scroll-margin-top: calc(var(--bar-h) + 24px); }
 }
 @media (min-width: 1024px) { .rail .stitch-x { display: none; } }
 
@@ -439,7 +485,8 @@ footer p + p { margin-top: 6px; }
   .kit > div { grid-template-columns: minmax(0, 1fr); }
   .figures > div { grid-template-columns: 7.5rem minmax(0, 1fr); gap: 14px; }
   .figures b { font-size: 26px; }
-  .contact-list li { grid-template-columns: minmax(0, 1fr); padding: 10px 0 4px; }
+  .contact-list li, .contact-list li.has-copy { grid-template-columns: minmax(0, 1fr) auto; padding: 10px 0 4px; }
+  .contact-list span { grid-column: 1 / -1; }
   .demo { padding: 18px 16px; }
 }
 @media (max-width: 379px) {
@@ -451,4 +498,61 @@ footer p + p { margin-top: 6px; }
 @media (max-width: 359px) {
   .pages { padding: 0 16px; }
   .rail { padding: 0 8px 0 16px; }
+}
+
+.print-head { display: none; }
+
+/* ===== Impressão: um currículo limpo, sem lombada nem demo ===== */
+@media print {
+  :root, :root[data-theme="light"] {
+    --page: #fff; --page-2: #fff; --ink: #1f3358; --ink-2: #3f4b66; --ink-3: #5a6378;
+    --accent: #0a6699; --rule: rgba(31, 51, 88, 0.14); --tool-lo: rgba(31, 51, 88, 0.16); --tool-hi: rgba(255, 255, 255, 0.85); --thread-ink: #2a77ad;
+    color-scheme: light;
+  }
+  @page { margin: 11mm 13mm 11mm; }
+  body { font-size: 10.5pt; line-height: 1.45; background: #fff; word-spacing: 0.1em; }
+  .rail, .skip, .knot, .portrait, .actions, .also, .demo, .plates, .plates-note, .links, .copy, .viewer, footer.pages, .colophon { display: none !important; }
+  .pages { margin: 0; padding: 0; }
+  .wrap { max-width: none; }
+  .print-head { display: block; margin: 0 0 10pt; font-size: 9.5pt; color: var(--ink-2); }
+  .print-head strong { display: block; font: 400 20pt/1.1 var(--display); letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink); margin-bottom: 3pt; }
+  .title-page { display: block; padding: 0 0 6pt; }
+  h1 { font-size: 15pt; letter-spacing: 0.04em; max-width: none; }
+  h1 .thread { color: inherit; }
+  .lede { font-size: 10.5pt; margin-top: 6pt; max-width: none; }
+  .avail { margin-top: 4pt; font-size: 10pt; }
+  .signature { padding: 10pt 0 0; }
+  .signature .wrap > .tooled { margin-bottom: 6pt; }
+  h2 { font-size: 13pt; max-width: none; break-after: avoid; }
+  .meta { margin-top: 2pt; font-size: 9.5pt; }
+  .intro { margin-top: 5pt; max-width: none; }
+  .case { display: block; margin-top: 6pt; }
+  .notes li { padding: 3pt 0; break-inside: avoid; }
+  .notes h3, .contents h3, .job h3 { font-size: 10.5pt; }
+  .notes p { font-size: 10pt; }
+  .figures { margin-top: 6pt; }
+  .figures > div { grid-template-columns: 6.5rem minmax(0, 1fr); padding: 2pt 0; break-inside: avoid; }
+  .figures b { font-size: 12pt; }
+  .figures span { font-size: 9.5pt; }
+  .contents { margin-top: 6pt; }
+  .contents li, .job, .kit > div { grid-template-columns: 9.5rem minmax(0, 1fr); padding: 3pt 0; gap: 2pt 14pt; break-inside: avoid; }
+  .contents .link { display: none; }
+  .edu { gap: 14pt; margin-top: 6pt; }
+  .job { margin-top: 6pt; }
+  .job ul { gap: 1pt; margin-top: 4pt; }
+  .kit { margin-top: 4pt; }
+  .contact-list { margin-top: 6pt; }
+  .contact-list li, .contact-list li.has-copy { grid-template-columns: 9.5rem minmax(0, 1fr); padding: 0; }
+  .contact-list a { min-height: 0; font-size: 10.5pt; text-decoration: none; color: var(--ink); }
+  .colophon h2 { font-size: 12pt; max-width: none; }
+  .intro, .notes p, .contents p, .edu-text, .facts dd, .job ul, .kit dd { font-size: 9.8pt; line-height: 1.4; }
+  .edu-school { font-size: 10.5pt; }
+  .edu-when { font-size: 9.8pt; }
+  .contents .meta, .facts dt, .contact-list span, .job .when, .meta { font-size: 9pt; }
+  .kit dt { font-size: 10pt; }
+  .facts div { padding: 3pt 0; break-inside: avoid; }
+  .edu { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .signature { padding-top: 8pt; }
+  a { color: inherit; }
+  .enter { animation: none; }
 }

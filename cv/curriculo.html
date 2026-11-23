@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Bruno Trevizan Strapazzon · Currículo · Automação e IA aplicada</title>
+<meta name="author" content="Bruno Trevizan Strapazzon">
+<meta name="keywords" content="Automação, Inteligência Artificial, IA aplicada, Python, Modelos de Linguagem, LLM, Groq, OpenAI, Ollama, pytest, CI/CD, GitHub Actions, Detecção de anomalias, Redes TCP/IP">
+<link rel="stylesheet" href="curriculo.css">
+</head>
+<body>
+<header>
+  <h1>Bruno Trevizan Strapazzon</h1>
+  <p class="role">Automação e IA aplicada · Python · Modelos de Linguagem (LLM)</p>
+  <div class="stitch" aria-hidden="true"></div>
+  <p class="contact">Serafina Corrêa, RS · Disponível para trabalho remoto · +55 (54) 99983-8415 · <a href="mailto:strapazzonbruno@gmail.com">strapazzonbruno@gmail.com</a></p>
+  <p class="contact"><a href="https://brunostrapazzon.github.io">brunostrapazzon.github.io</a> · <a href="https://www.linkedin.com/in/bruno-trevizan-strapazzon-7a7b24367">linkedin.com/in/bruno-trevizan-strapazzon-7a7b24367</a> · <a href="https://github.com/brunostrapazzon">github.com/brunostrapazzon</a></p>
+</header>
+
+<section>
+  <h2>Resumo</h2>
+  <p class="summary">Estudante de Ciência da Computação na FIAP (bolsista pelo ENEM) com 3 anos de suporte de TI e redes, em busca da primeira vaga remota, de estágio ou júnior, em automação ou IA aplicada. Desenvolvo em Python sistemas em que a IA dá para conferir: regras determinísticas e testes onde um modelo poderia errar, métricas para saber quando ele acerta. Criei o <strong>NetDoctor</strong> a partir dos chamados que atendo (279 testes automatizados, CI/CD e integração com Groq, OpenAI e Ollama) e participei do <strong>Citizen Assist AI</strong>, avaliado com 30 perguntas de teste (86,7% de acerto). Inglês B2 (TOEFL ITP).</p>
+</section>
+
+<section class="skills">
+  <h2>Competências</h2>
+  <ul>
+    <li><strong>IA e dados:</strong> integração com APIs de Modelos de Linguagem (LLM: Groq, OpenAI, Ollama) · validação de saída de LLM com fallback · avaliação com métricas (acerto, cobertura, abstenção) · detecção de anomalias (Isolation Forest)</li>
+    <li><strong>Desenvolvimento e automação:</strong> Python · testes automatizados (pytest) · Git e GitHub · CI/CD (GitHub Actions) · PyInstaller · Streamlit · automação de comandos do Windows (netsh, ping, ipconfig)</li>
+    <li><strong>Algoritmos e estruturas de dados:</strong> grafos e Dijkstra · índice invertido · heap · trie · fila e pilha · regressão linear</li>
+    <li><strong>Infraestrutura e suporte:</strong> redes TCP/IP · DHCP · DNS · Wi-Fi · roteadores · Windows · atendimento ao cliente</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Projetos</h2>
+  <div class="item">
+    <h3>NetDoctor <span class="what">· diagnóstico de rede com IA verificável</span></h3>
+    <p class="meta">Projeto pessoal · 2026 · <a href="https://github.com/brunostrapazzon/NetDoctor">github.com/brunostrapazzon/NetDoctor</a></p>
+    <ul>
+      <li>Automatizei a triagem dos chamados de “internet não funciona”: app para Windows que testa a conexão em cerca de 10 segundos e explica a causa em português simples, com relatório para o cliente e laudo técnico para o suporte.</li>
+      <li>Diagnóstico por <strong>regras determinísticas</strong> com 10 resultados possíveis; o modelo de linguagem (Groq, OpenAI ou Ollama local) só reescreve a explicação, nunca decide.</li>
+      <li><strong>Saída da IA validada</strong> (formato, de 1 a 3 ações, limite de tamanho), com troca automática para o texto offline em caso de erro, demora ou resposta inválida.</li>
+      <li><strong>Privacidade garantida por teste:</strong> a IA recebe só uma lista fechada de campos; nome da rede, IPs e MAC nunca saem da máquina.</li>
+      <li><strong>279 testes automatizados</strong> com saídas reais do Windows em português e inglês; pipeline de CI/CD no GitHub Actions testa, gera o executável (PyInstaller) e publica o release.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <h3>Citizen Assist AI <span class="what">· assistente que se abstém em vez de chutar</span></h3>
+    <p class="meta">FIAP Global Solution · 2026 · equipe de 3 · <a href="https://github.com/brunostrapazzon/CITIZEN-ASSIST-AI">github.com/brunostrapazzon/CITIZEN-ASSIST-AI</a></p>
+    <ul>
+      <li>Orienta o cidadão sobre serviços públicos usando só fontes oficiais, em Python puro e offline: busca com índice invertido e correção de digitação, assuntos relacionados por grafo e trilhas entre temas com Dijkstra.</li>
+      <li>Avaliação automática com 30 perguntas de teste: <strong>86,7% de acerto</strong>, <strong>87,5% de abstenção correta</strong> quando a base não tem a resposta, 0 falhas técnicas e 0,08 ms por consulta.</li>
+      <li>A avaliação revelou respostas erradas dadas com confiança na primeira versão; a segunda passou a se abster ou a oferecer opções com aviso de baixa confiança.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <h3>EV ChargeOps <span class="what">· medição e cobrança de recarga de carros elétricos</span></h3>
+    <p class="meta">Enterprise Challenge GoodWe + FIAP · 2026 · equipe de 3</p>
+    <ul>
+      <li>Protótipo que lê o carregador via Modbus, associa a sessão à unidade por RFID e usa <strong>detecção de anomalias (Isolation Forest)</strong> para barrar medições suspeitas antes da cobrança. Nos testes com dados simulados, barrou as 12 sessões com problema sem bloquear nenhuma normal.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <h3>Outros projetos acadêmicos <span class="what">· FIAP · 2026</span></h3>
+    <ul>
+      <li><strong>Monitoramento ARES-VII</strong> (equipe de 3): telemetria de uma missão simulada em Marte, priorização de alertas com fila e pilha e previsão da reserva de energia com regressão linear feita à mão, em Python puro.</li>
+      <li><strong>SCIC Aurora Siger:</strong> análise de latência, previsão, priorização de alertas com heap e busca por prefixo com trie.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Experiência</h2>
+  <div class="item">
+    <h3>Assistente de TI <span class="what">· AC Informática</span></h3>
+    <p class="meta">Paraí, RS · out. 2023 – atual · CLT desde fev. 2024</p>
+    <p class="note">Representante de provedor de internet que também faz infraestrutura de redes e assistência técnica.</p>
+    <ul>
+      <li>Suporte técnico e redes para clientes do provedor: <strong>cerca de 100 clientes atendidos</strong> e <strong>20 redes configuradas</strong> em empresas, casas e condomínios.</li>
+      <li>Diagnóstico de chamados de conexão, separando falhas de Wi-Fi, roteador ou DNS de falhas da operadora.</li>
+      <li>Manutenção de notebooks, computadores e impressoras; gestão de redes internas de clientes.</li>
+      <li>Transformei a triagem mais comum dos chamados no NetDoctor, que a automatiza.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Formação</h2>
+  <div class="item">
+    <h3>Bacharelado em Ciência da Computação <span class="what">· FIAP (online)</span></h3>
+    <p class="meta">2026 – 2029 (previsão) · Bolsista pelo ENEM</p>
+    <p class="note">Projetos em equipe do curso: Citizen Assist AI (Global Solution), EV ChargeOps (Enterprise Challenge com a GoodWe), ARES-VII e SCIC Aurora Siger.</p>
+  </div>
+</section>
+
+<section class="skills">
+  <h2>Certificações, idiomas e prêmios</h2>
+  <ul>
+    <li><strong>Certificações:</strong> Lógica de Programação (FIAP, 2026) · Comunicação (FIAP, 2026) · Começando em Programação (Alura, 2026)</li>
+    <li><strong>Idiomas:</strong> português nativo · inglês B2 (TOEFL ITP, 2024)</li>
+    <li><strong>Prêmios:</strong> duas medalhas de bronze na OBMEP (Olimpíada Brasileira de Matemática das Escolas Públicas)</li>
+    <li><strong>Voluntariado:</strong> ajudei a organizar a Copa Corte, evento que arrecadou recursos para o meu colégio.</li>
+  </ul>
+</section>
+</body>
+</html>

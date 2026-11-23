@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Bruno Trevizan Strapazzon · Resume · Automation and Applied AI</title>
+<meta name="author" content="Bruno Trevizan Strapazzon">
+<meta name="keywords" content="Automation, Artificial Intelligence, Applied AI, Python, Large Language Models, LLM, Groq, OpenAI, Ollama, pytest, CI/CD, GitHub Actions, Anomaly detection, TCP/IP networking">
+<link rel="stylesheet" href="curriculo.css">
+</head>
+<body>
+<header>
+  <h1>Bruno Trevizan Strapazzon</h1>
+  <p class="role">Automation and Applied AI · Python · Large Language Models (LLMs)</p>
+  <div class="stitch" aria-hidden="true"></div>
+  <p class="contact">Serafina Corrêa, RS, Brazil (UTC−3) · Open to remote work · +55 54 99983-8415 · <a href="mailto:strapazzonbruno@gmail.com">strapazzonbruno@gmail.com</a></p>
+  <p class="contact"><a href="https://brunostrapazzon.github.io/en/">brunostrapazzon.github.io/en</a> · <a href="https://www.linkedin.com/in/bruno-trevizan-strapazzon-7a7b24367">linkedin.com/in/bruno-trevizan-strapazzon-7a7b24367</a> · <a href="https://github.com/brunostrapazzon">github.com/brunostrapazzon</a></p>
+</header>
+
+<section>
+  <h2>Summary</h2>
+  <p class="summary">Computer Science student at FIAP, Brazil (scholarship through ENEM, the national university entrance exam), with 3 years of IT support and networking experience, looking for a first remote internship or junior role in automation or applied AI. I build Python systems whose AI you can check: deterministic rules and tests where a model could be wrong, metrics to know when it is right. I built <strong>NetDoctor</strong> from the support tickets I handle (279 automated tests, CI/CD, integration with Groq, OpenAI and Ollama) and worked on <strong>Citizen Assist AI</strong>, evaluated on 30 test questions (86.7% accuracy). English B2 (TOEFL ITP).</p>
+</section>
+
+<section class="skills">
+  <h2>Skills</h2>
+  <ul>
+    <li><strong>AI and data:</strong> Large Language Model (LLM) API integration (Groq, OpenAI, Ollama) · LLM output validation with fallback · evaluation with metrics (accuracy, coverage, abstention) · anomaly detection (Isolation Forest)</li>
+    <li><strong>Development and automation:</strong> Python · automated testing (pytest) · Git and GitHub · CI/CD (GitHub Actions) · PyInstaller · Streamlit · Windows command automation (netsh, ping, ipconfig)</li>
+    <li><strong>Algorithms and data structures:</strong> graphs and Dijkstra · inverted index · heap · trie · queue and stack · linear regression</li>
+    <li><strong>Infrastructure and support:</strong> TCP/IP networking · DHCP · DNS · Wi-Fi · routers · Windows · customer support</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Projects</h2>
+  <div class="item">
+    <h3>NetDoctor <span class="what">· network diagnosis with verifiable AI</span></h3>
+    <p class="meta">Personal project · 2026 · <a href="https://github.com/brunostrapazzon/NetDoctor">github.com/brunostrapazzon/NetDoctor</a></p>
+    <ul>
+      <li>Automated the triage of “my internet isn’t working” tickets: a Windows app that tests the connection in about 10 seconds and explains the cause in plain Portuguese, with a client report and a technical report for support staff.</li>
+      <li>Diagnosis by <strong>deterministic rules</strong> with 10 possible outcomes; the language model (Groq, OpenAI or local Ollama) only rewrites the explanation and never decides.</li>
+      <li><strong>Validated AI output</strong> (format, 1 to 3 actions, length limit), with automatic fallback to built-in offline text on error, timeout or invalid response.</li>
+      <li><strong>Privacy enforced by tests:</strong> the AI receives only a closed list of fields; network name, IPs and MAC never leave the machine.</li>
+      <li><strong>279 automated tests</strong> on real Windows output in Portuguese and English; a GitHub Actions CI/CD pipeline tests, builds the executable (PyInstaller) and publishes the release.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <h3>Citizen Assist AI <span class="what">· an assistant that abstains instead of guessing</span></h3>
+    <p class="meta">FIAP Global Solution · 2026 · team of 3 · <a href="https://github.com/brunostrapazzon/CITIZEN-ASSIST-AI">github.com/brunostrapazzon/CITIZEN-ASSIST-AI</a></p>
+    <ul>
+      <li>Guides citizens on public services using only official sources, in pure Python and offline: inverted-index search with typo correction, related topics through a graph and paths between topics with Dijkstra.</li>
+      <li>Automated evaluation on 30 test questions: <strong>86.7% accuracy</strong>, <strong>87.5% correct abstention</strong> when the knowledge base has no answer, 0 technical failures and 0.08 ms per query.</li>
+      <li>The evaluation exposed confidently wrong answers in the first version; the second learned to abstain or offer options with a low-confidence warning.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <h3>EV ChargeOps <span class="what">· metering and billing for electric car charging</span></h3>
+    <p class="meta">Enterprise Challenge GoodWe + FIAP · 2026 · team of 3</p>
+    <ul>
+      <li>Prototype that reads the charger over Modbus, links each session to a unit by RFID and uses <strong>anomaly detection (Isolation Forest)</strong> to block suspicious readings before billing. In tests with simulated data, it blocked all 12 problem sessions without blocking any normal one.</li>
+    </ul>
+  </div>
+  <div class="item">
+    <h3>Other academic projects <span class="what">· FIAP · 2026</span></h3>
+    <ul>
+      <li><strong>ARES-VII Monitoring</strong> (team of 3): telemetry from a simulated Mars mission, alert prioritization with a queue and a stack, and energy reserve forecasting with a hand-written linear regression, in pure Python.</li>
+      <li><strong>SCIC Aurora Siger:</strong> latency analysis, forecasting, alert prioritization with a heap and prefix search with a trie.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Experience</h2>
+  <div class="item">
+    <h3>IT Assistant <span class="what">· AC Informática</span></h3>
+    <p class="meta">Paraí, RS, Brazil · Oct. 2023 – present · formal employment since Feb. 2024</p>
+    <p class="note">Local representative of an internet provider that also offers network infrastructure and technical support.</p>
+    <ul>
+      <li>Technical support and networking for the provider’s clients: <strong>about 100 clients served</strong> and <strong>20 networks configured</strong> in businesses, homes and condominiums.</li>
+      <li>Diagnosed connection tickets, separating Wi-Fi, router or DNS faults from provider outages.</li>
+      <li>Maintained laptops, computers and printers; managed clients’ internal networks.</li>
+      <li>Turned the most common ticket triage into NetDoctor, which automates it.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Education</h2>
+  <div class="item">
+    <h3>Bachelor’s in Computer Science <span class="what">· FIAP (online)</span></h3>
+    <p class="meta">2026 – 2029 (expected) · ENEM scholarship</p>
+    <p class="note">Team projects from the course: Citizen Assist AI (Global Solution), EV ChargeOps (Enterprise Challenge with GoodWe), ARES-VII and SCIC Aurora Siger.</p>
+  </div>
+</section>
+
+<section class="skills">
+  <h2>Certifications, languages and awards</h2>
+  <ul>
+    <li><strong>Certifications:</strong> Programming Logic (FIAP, 2026) · Communication (FIAP, 2026) · Getting Started in Programming (Alura, 2026)</li>
+    <li><strong>Languages:</strong> Portuguese (native) · English B2 (TOEFL ITP, 2024)</li>
+    <li><strong>Awards:</strong> two bronze medals at OBMEP, the Brazilian Public Schools Mathematics Olympiad</li>
+    <li><strong>Volunteering:</strong> helped organize Copa Corte, an event that raised funds for my school.</li>
+  </ul>
+</section>
+</body>
+</html>

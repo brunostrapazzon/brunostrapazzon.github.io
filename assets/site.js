@@ -40,6 +40,71 @@
     }, { rootMargin: "-30% 0px -55% 0px", threshold: [0, 0.01, 0.5, 1] });
     links.forEach((a, id) => { const s = document.getElementById(id); if (s) io.observe(s); });
   }
+
+  // Celular: o botão "Índice" abre o corpo da lombada como painel.
+  const rail = document.querySelector(".rail");
+  const menuBtn = document.querySelector(".menu-btn");
+  if (rail && menuBtn) {
+    const setOpen = (open, focusBack) => {
+      menuBtn.setAttribute("aria-expanded", String(open));
+      if (open) rail.setAttribute("data-open", ""); else rail.removeAttribute("data-open");
+      if (open) { const first = rail.querySelector(".index a"); if (first) first.focus(); }
+      else if (focusBack) menuBtn.focus();
+    };
+    menuBtn.addEventListener("click", () => setOpen(menuBtn.getAttribute("aria-expanded") !== "true"));
+    rail.querySelectorAll(".index a").forEach((a) => a.addEventListener("click", () => setOpen(false)));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && rail.hasAttribute("data-open")) setOpen(false, true);
+    });
+    document.addEventListener("click", (e) => {
+      if (rail.hasAttribute("data-open") && !rail.contains(e.target)) setOpen(false);
+    });
+    window.matchMedia("(min-width: 1024px)").addEventListener("change", (m) => { if (m.matches) setOpen(false); });
+  }
+
+  // Contato: copiar e-mail e telefone com um clique.
+  const status = document.getElementById("copy-status");
+  document.querySelectorAll(".copy").forEach((btn) => {
+    const label = btn.textContent;
+    btn.addEventListener("click", async () => {
+      const value = btn.dataset.copy;
+      let ok = false;
+      try { await navigator.clipboard.writeText(value); ok = true; } catch (e) {
+        const t = document.createElement("textarea");
+        t.value = value; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.opacity = "0";
+        document.body.append(t); t.select();
+        try { ok = document.execCommand("copy"); } catch (e2) {}
+        t.remove();
+      }
+      if (!ok) return;
+      btn.textContent = EN ? "Copied" : "Copiado";
+      btn.dataset.done = "";
+      if (status) status.textContent = EN ? `${value} copied` : `${value} copiado`;
+      clearTimeout(btn._t);
+      btn._t = setTimeout(() => { btn.textContent = label; delete btn.dataset.done; }, 2000);
+    });
+  });
+
+  // Prints: abrem numa prancha sobre a página; Esc, o X ou o fundo fecham.
+  const viewer = document.getElementById("viewer");
+  if (viewer && typeof viewer.showModal === "function") {
+    const img = document.createElement("img");
+    img.alt = "";
+    viewer.querySelector(".plate").prepend(img);
+    viewer.querySelector(".viewer-close").addEventListener("click", () => viewer.close());
+    viewer.addEventListener("click", (e) => { if (e.target === viewer) viewer.close(); });
+    viewer.addEventListener("close", () => { img.removeAttribute("src"); });
+    document.querySelectorAll("a.shot").forEach((a) => {
+      a.addEventListener("click", (e) => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+        e.preventDefault();
+        const thumb = a.querySelector("img");
+        img.alt = thumb ? thumb.alt : "";
+        img.src = a.href;
+        viewer.showModal();
+      });
+    });
+  }
 })();
 
 (() => {
