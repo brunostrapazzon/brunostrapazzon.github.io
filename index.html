@@ -345,6 +345,21 @@ section h2 { font-size: clamp(28px, 4.2vw, 40px); letter-spacing: -0.025em; line
 }
 @media (min-width: 760px) { .contact-card { padding: 56px; } }
 .contact-card h2 { max-width: 20ch; }
+.contact-list { list-style: none; padding: 0; margin: 28px 0 0; display: grid; grid-template-columns: 1fr; max-width: 640px; }
+.contact-list li { display: grid; grid-template-columns: 1fr; gap: 0 24px; padding: 6px 0; box-shadow: 0 1px 0 var(--line); }
+@media (min-width: 600px) { .contact-list li { grid-template-columns: 180px 1fr; align-items: center; } }
+.contact-list span { font-size: 13px; color: var(--text-3); padding-top: 6px; }
+@media (min-width: 600px) { .contact-list span { padding-top: 0; } }
+.contact-list a {
+  min-height: 44px; display: inline-flex; align-items: center; color: var(--text); font-size: 16px;
+  text-decoration: underline; text-underline-offset: 4px; text-decoration-color: transparent;
+  font-variant-numeric: tabular-nums; overflow-wrap: anywhere;
+  transition: color 150ms ease, text-decoration-color 150ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .contact-list a:hover { color: var(--blue); text-decoration-color: currentColor; }
+}
+@media (prefers-reduced-motion: reduce) { .contact-list a { transition: none; } }
 footer { padding: 36px 0 56px; color: var(--text-3); font-size: 14px; }
 footer p + p { margin-top: 8px; }
 </style>
@@ -582,10 +597,17 @@ footer p + p { margin-top: 8px; }
       <div class="contact-card">
         <p class="kicker">Contato</p>
         <h2>Procuro minha primeira vaga remota em automação ou IA aplicada.</h2>
-        <p class="section-lede">Ciência da Computação na FIAP (2026–2029), bolsista pelo ENEM. Inglês B2 (TOEFL ITP). Duas medalhas de bronze na OBMEP. O jeito mais rápido de falar comigo é pelo LinkedIn.</p>
+        <p class="section-lede">Ciência da Computação na FIAP (2026–2029), bolsista pelo ENEM. Inglês B2 (TOEFL ITP). Duas medalhas de bronze na OBMEP.</p>
+        <ul class="contact-list">
+          <li><span>E-mail</span><a href="mailto:strapazzonbruno@gmail.com">strapazzonbruno@gmail.com</a></li>
+          <li><span>Telefone e WhatsApp</span><a href="tel:+5554999838415">+55 (54) 99983-8415</a></li>
+          <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/bruno-trevizan-strapazzon-7a7b24367" rel="noopener">bruno-trevizan-strapazzon</a></li>
+          <li><span>GitHub</span><a href="https://github.com/brunostrapazzon" rel="noopener">brunostrapazzon</a></li>
+        </ul>
         <div class="actions">
-          <a class="btn btn-primary" href="https://www.linkedin.com/in/bruno-trevizan-strapazzon-7a7b24367" rel="noopener">Falar pelo LinkedIn</a>
-          <a class="btn btn-ghost" href="https://github.com/brunostrapazzon" rel="noopener">GitHub</a>
+          <a class="btn btn-primary" href="mailto:strapazzonbruno@gmail.com">Enviar e-mail</a>
+          <a class="btn btn-ghost" href="https://wa.me/5554999838415" rel="noopener">WhatsApp</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/bruno-trevizan-strapazzon-7a7b24367" rel="noopener">LinkedIn</a>
         </div>
       </div>
     </div>
