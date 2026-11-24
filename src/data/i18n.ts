@@ -117,6 +117,7 @@ export const ui = {
     },
     footer: {
       updated: "Atualizado em novembro de 2026.",
+      built: "Feito com Astro e three.js, publicado pelo GitHub Actions.",
       source: "Código do site",
       also: "This site is also available",
       alsoLink: "in English",
@@ -235,6 +236,7 @@ export const ui = {
     },
     footer: {
       updated: "Updated in November 2026.",
+      built: "Built with Astro and three.js, published by GitHub Actions.",
       source: "Site source code",
       also: "Este site também está",
       alsoLink: "em português",
