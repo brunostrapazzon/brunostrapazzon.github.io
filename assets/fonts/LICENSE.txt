@@ -1,8 +1,0 @@
-As fontes desta pasta são distribuídas sob a SIL Open Font License 1.1
-(https://openfontlicense.org). Arquivos obtidos do Google Fonts, sem modificação.
-
-- Marcellus: Copyright (c) 2012 Brian J. Bonislawsky DBA Astigmatic (AOETI).
-- Alegreya Sans: Copyright (c) 2013 Juan Pablo del Peral, Huerta Tipográfica.
-- JetBrains Mono: Copyright (c) 2020 The JetBrains Mono Project Authors.
-
-Reserved Font Names, quando existirem, seguem os avisos das fontes originais.

@@ -1,0 +1,42 @@
+---
+import type { Lang } from "../data/i18n";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const pt = lang === "pt";
+const scenarios = pt
+  ? [["ok", "Tudo certo"], ["wifi", "Wi-Fi fraco"], ["router", "Roteador travado"], ["isp", "Operadora fora"], ["dns", "DNS"]]
+  : [["ok", "All good"], ["wifi", "Weak Wi-Fi"], ["router", "Frozen router"], ["isp", "Provider down"], ["dns", "DNS"]];
+const steps = pt
+  ? [["link", "Computador conectado", "cabo ou Wi-Fi ligado"], ["dhcp", "Endereço recebido", "o roteador entregou um IP"], ["router", "Roteador responde", "ping no roteador"], ["isp", "Internet da operadora", "ping fora de casa"], ["dns", "Nomes dos sites", "DNS traduz endereços"], ["signal", "Sinal do Wi-Fi", "força e interferência"]]
+  : [["link", "Computer connected", "cable or Wi-Fi on"], ["dhcp", "Address received", "the router handed out an IP"], ["router", "Router responds", "ping to the router"], ["isp", "Provider’s internet", "ping outside the home"], ["dns", "Site names", "DNS translates addresses"], ["signal", "Wi-Fi signal", "strength and interference"]];
+---
+<section class="demo" aria-labelledby="demo-titulo" data-reveal>
+  <div class="demo-side">
+    <h2 id="demo-titulo">{pt ? "As regras, passo a passo" : "The rules, step by step"}</h2>
+    <p>{pt ? "Escolha um problema e veja os testes rodarem até o primeiro que falha." : "Pick a problem and watch the tests run until the first one that fails."}</p>
+    <fieldset class="scenarios">
+      <legend>{pt ? "Problema simulado" : "Simulated problem"}</legend>
+      {scenarios.map(([v, label], i) => <label><input type="radio" name="sc" value={v} checked={i === 0} /><span>{label}</span></label>)}
+    </fieldset>
+    <p class="demo-foot">{pt ? "Simplificação das regras reais do projeto. A explicação é o texto pronto; com a IA ligada, ela reescreve só esse texto, nunca o diagnóstico." : "A simplification of the project’s real rules. The explanation is the built-in text; with the AI on, it rewrites only that text, never the diagnosis."}</p>
+  </div>
+  <div>
+    <ol class="chain" id="chain">
+      {steps.map(([k, what, small]) => (
+        <li data-key={k}>
+          <span class="dot" aria-hidden="true">
+            <svg class="i-ok" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-7" /></svg>
+            <svg class="i-warn" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M8 3.5v5.5M8 12.5v.01" /></svg>
+            <svg class="i-fail" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" /></svg>
+          </span>
+          <span class="what">{what}<small>{small}</small></span>
+          <span class="status"></span>
+        </li>
+      ))}
+    </ol>
+    <div class="verdict" id="verdict" aria-live="polite"></div>
+  </div>
+</section>
+<script>
+  import "../scripts/demo.ts";
+</script>

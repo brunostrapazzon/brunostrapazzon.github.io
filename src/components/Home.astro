@@ -1,0 +1,189 @@
+---
+import Base from "../layouts/Base.astro";
+import Icon from "./Icon.astro";
+import { ui, themes, contact, type Lang, type Theme } from "../data/i18n";
+import { projects } from "../data/index";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui[lang];
+const ids = lang === "pt" ? { projects: "projetos", about: "sobre", contact: "contato" } : { projects: "projects", about: "about", contact: "contact" };
+const href = (p: (typeof projects)[number]) => (p.page ? `${t.projectBase}${p.slug}/` : p.repo!);
+const usedThemes = (Object.keys(themes) as Theme[]).filter((k) => projects.some((p) => p.themes.includes(k)));
+const themeColor: Record<Theme, string> = { ia: "var(--blue)", automacao: "var(--green)", dados: "var(--yellow)", redes: "var(--orange)", algoritmos: "var(--pink)" };
+const stageObjects = projects.map((p) => ({ kind: p.object, color: p.color, slug: p.slug, href: href(p), title: p[lang].title }));
+const bySlug = Object.fromEntries(projects.map((p) => [p.slug, p]));
+const cardColors = [
+  { c: "var(--blue)", o: "var(--on-blue)" },
+  { c: "var(--green)", o: "var(--on-green)" },
+  { c: "var(--yellow)", o: "var(--on-yellow)" },
+];
+const stickers = lang === "pt"
+  ? [
+      { text: "FIAP 2026–2029", c: "var(--blue)", o: "var(--on-blue)", r: "-6deg", x: "-6%", y: "8%" },
+      { text: "Suporte de TI desde 2023", c: "var(--yellow)", o: "var(--on-yellow)", r: "4deg", x: "48%", y: "72%" },
+      { text: "Inglês B2", c: "var(--green)", o: "var(--on-green)", r: "-3deg", x: "-4%", y: "86%" },
+    ]
+  : [
+      { text: "FIAP 2026–2029", c: "var(--blue)", o: "var(--on-blue)", r: "-6deg", x: "-6%", y: "8%" },
+      { text: "IT support since 2023", c: "var(--yellow)", o: "var(--on-yellow)", r: "4deg", x: "50%", y: "72%" },
+      { text: "English B2", c: "var(--green)", o: "var(--on-green)", r: "-3deg", x: "-4%", y: "86%" },
+    ];
+const path = t.home;
+const altPath = ui[lang === "pt" ? "en" : "pt"].home;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Bruno Strapazzon",
+  url: "https://brunostrapazzon.github.io" + path,
+  image: "https://brunostrapazzon.github.io/img/bruno-960.webp",
+  email: "mailto:" + contact.email,
+  description: t.description,
+  jobTitle: lang === "pt" ? "Assistente de TI" : "IT Assistant",
+  worksFor: { "@type": "Organization", name: "AC Informática" },
+  affiliation: { "@type": "CollegeOrUniversity", name: "FIAP" },
+  knowsLanguage: ["pt-BR", "en"],
+  sameAs: [contact.linkedin, contact.github],
+};
+---
+<Base lang={lang} title={t.title} description={t.description} path={path} altPath={altPath} ogImage={`/generated/og/home-${lang}.png`} ogAlt={t.ogAlt} home enter jsonLd={jsonLd}>
+  <section class="hero" aria-labelledby="nome">
+    <div class="wrap">
+      <div class="hero-meta">
+        <span class="pill pill-live">{t.available}</span>
+        <span class="pill">{t.role}</span>
+        <span class="pill">{t.place}</span>
+      </div>
+      <div class="hero-stage-wrap">
+        <div class="name-box">
+          <h1 class="hero-name" id="nome" translate="no"><span class="line">Bruno</span><span class="line">Strapazzon</span></h1>
+          <div class="stage" data-stage="hero" data-objects={JSON.stringify(stageObjects)}></div>
+        </div>
+      </div>
+      <div class="hero-foot">
+        <p class="hero-tag">{t.tagline}</p>
+        <p class="hero-lede">{t.lede}</p>
+        <div class="hero-actions">
+          <a class="btn" href={`mailto:${contact.email}`}><Icon name="mail" />{t.ctaEmail}</a>
+          <a class="btn btn-ghost" href={contact.whatsapp} rel="noopener"><Icon name="chat" />{t.ctaWhats}</a>
+        </div>
+        <p class="hero-also">{t.also[0]} <a class="link" href={contact.linkedin} rel="noopener">LinkedIn</a>, {t.also[1]} <a class="link" href={contact.github} rel="noopener">GitHub</a> {t.also[2]} <a class="link" href={t.cvHref} type="application/pdf">{t.also[3]}</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section index" id={ids.projects} aria-labelledby="projetos-titulo">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 class="sec-title" id="projetos-titulo">{t.projects.title}</h2>
+        <p class="sec-count">{t.projects.count(projects.length)}</p>
+        <div class="filters" role="group" aria-label={t.projects.filter}>
+          <button class="chip" type="button" data-filter="*" aria-pressed="true">{t.projects.all}</button>
+          {usedThemes.map((k) => (
+            <button class="chip" type="button" data-filter={k} aria-pressed="false" style={`--c:${themeColor[k]}`}><i aria-hidden="true"></i>{themes[k][lang]}</button>
+          ))}
+        </div>
+      </div>
+      <p class="sr-only" aria-live="polite" data-filter-status></p>
+      <ol class="rows">
+        {projects.map((p) => {
+          const x = p[lang];
+          const external = !p.page;
+          return (
+            <li class="row" data-themes={p.themes.join(" ")} style={`--pc:${p.color};--po:${p.onColor}`}>
+              <a class="row-link" href={href(p)} rel={external ? "noopener" : undefined} style={p.page ? `view-transition-name: t-${p.slug}` : undefined}>
+                <span class="row-thumb" data-thumb data-objects={JSON.stringify([{ kind: p.object, color: p.color }])} aria-hidden="true"><span class="fallback"></span></span>
+                <span class="row-title" translate="no">{x.title}</span>
+                <span class="row-sum">{x.summary}</span>
+                <span class="row-meta">
+                  <span class="row-themes">{p.themes.map((k) => <span>{themes[k][lang]}</span>)}</span>
+                  <span>{x.context}</span>
+                </span>
+                <span class="row-go" aria-hidden="true"><Icon name={external ? "external" : "arrow"} /></span>
+                <span class="sr-only">{external ? t.projects.repo : t.projects.caseStudy}</span>
+              </a>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="principios-titulo">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="sec-title" id="principios-titulo">{t.principles.title}</h2></div>
+      <div class="principles" data-reveal-group>
+        {t.principles.items.map((it, i) => {
+          const p = bySlug[it.ref];
+          return (
+            <article class="principle" data-reveal="pop" style={`--pc:${cardColors[i].c};--po:${cardColors[i].o}`}>
+              <span class="shape" aria-hidden="true"></span>
+              <h3>{it.h}</h3>
+              <p>{it.p}</p>
+              {p && <a class="link" href={`${t.projectBase}${p.slug}/`}>{p[lang].title}</a>}
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id={ids.about} aria-labelledby="sobre-titulo">
+    <div class="wrap">
+      <div class="sec-head"><h2 class="sec-title" id="sobre-titulo">{t.about.title}</h2></div>
+      <div class="about">
+        <figure class="portrait" data-reveal>
+          <div class="portrait-frame">
+            <img src="/img/bruno-960.webp" srcset="/img/bruno-480.webp 480w, /img/bruno-960.webp 960w" sizes="(min-width: 900px) 30vw, (min-width: 480px) 420px, 90vw" width="360" height="450" alt={t.about.photoAlt} loading="lazy" decoding="async" />
+          </div>
+          <div class="stickers" aria-hidden="true">
+            {stickers.map((s) => <span class="sticker" style={`--sc:${s.c};--so:${s.o};--r:${s.r};left:${s.x};top:${s.y}`}>{s.text}</span>)}
+          </div>
+        </figure>
+        <div class="about-body">
+          <div class="about-block" data-reveal>
+            <h3 class="about-h">{t.about.eduTitle}</h3>
+            <p class="about-lead">{t.about.school}</p>
+            <p class="about-text">{t.about.when}</p>
+            <p class="about-text">{t.about.eduText}</p>
+            <dl class="facts">
+              {t.about.facts.map((f) => <div><dt>{f.dt}</dt><dd>{f.dd}</dd></div>)}
+            </dl>
+          </div>
+          <div class="about-block" data-reveal>
+            <h3 class="about-h">{t.about.jobHeading}</h3>
+            <div class="job-meta"><strong>{t.about.jobRole}</strong><span class="job-when">{t.about.jobWhen}</span></div>
+            <ul class="job-list">{t.about.jobItems.map((li) => <li>{li}</li>)}</ul>
+          </div>
+          <div class="about-block" data-reveal>
+            <h3 class="about-h">{t.about.kitTitle}</h3>
+            <dl class="facts">
+              {t.about.kit.map((f) => <div><dt>{f.dt}</dt><dd>{f.dd}</dd></div>)}
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id={ids.contact} aria-labelledby="contato-titulo">
+    <div class="wrap section">
+      <h2 class="contact-h" id="contato-titulo">{t.contactSec.heading}</h2>
+      <div class="contact-grid" data-reveal>
+        <div class="contact-actions">
+          <a class="btn" href={`mailto:${contact.email}`}><Icon name="mail" />{t.ctaEmail}</a>
+          <a class="btn btn-ghost" href={contact.whatsapp} rel="noopener"><Icon name="chat" />{t.ctaWhats}</a>
+          <a class="btn btn-ghost" href={t.cvHref} type="application/pdf"><Icon name="download" />{t.ctaCv}</a>
+        </div>
+        <ul class="contact-list">
+          <li><span>{t.contactSec.email}</span><a href={`mailto:${contact.email}`}>{contact.email}</a><button class="copy" type="button" data-copy={contact.email} data-done-label={t.contactSec.copied} aria-label={t.contactSec.copyEmail}>{t.contactSec.copy}</button></li>
+          <li><span>{t.contactSec.phone}</span><a href={contact.phoneHref}>{contact.phoneShow}</a><button class="copy" type="button" data-copy={contact.phoneCopy} data-done-label={t.contactSec.copied} aria-label={t.contactSec.copyPhone}>{t.contactSec.copy}</button></li>
+          <li><span>{t.contactSec.linkedin}</span><a href={contact.linkedin} rel="noopener">{contact.linkedinShow}</a></li>
+          <li><span>{t.contactSec.github}</span><a href={contact.github} rel="noopener">{contact.githubShow}</a></li>
+          <li><span>{t.contactSec.cv}</span><a href={t.cvHref} type="application/pdf">{t.contactSec.cvShow}</a></li>
+          <li><span>{t.contactSec.tz}</span><p class="contact-note">{t.contactSec.tzShow}</p></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Base>

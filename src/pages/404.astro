@@ -1,0 +1,19 @@
+---
+import Base from "../layouts/Base.astro";
+import Icon from "../components/Icon.astro";
+import { ui } from "../data/i18n";
+const t = ui.pt.notFound, e = ui.en.notFound;
+---
+<Base lang="pt" title={t.title} description={t.text} path="/404/" altPath="/en/" ogImage="/generated/og/home-pt.png" ogAlt={ui.pt.ogAlt}>
+  <meta slot="head" name="robots" content="noindex" />
+  <section class="wrap lost">
+    <div class="stage-404" data-stage="single" data-objects='[{"kind":"cube","color":"#ff5a8f","slug":"404","href":"/","title":"404"}]' aria-hidden="true"></div>
+    <h1>{t.heading}</h1>
+    <p>{t.text}</p>
+    <p lang="en">{e.heading} {e.text}</p>
+    <div class="lost-actions">
+      <a class="btn" href="/#projetos">{t.back}<Icon name="arrow" /></a>
+      <a class="btn btn-ghost" href="/en/#projects" lang="en" hreflang="en">{e.back}</a>
+    </div>
+  </section>
+</Base>

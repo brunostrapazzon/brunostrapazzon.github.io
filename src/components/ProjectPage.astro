@@ -1,0 +1,105 @@
+---
+import Base from "../layouts/Base.astro";
+import Icon from "./Icon.astro";
+import Demo from "./Demo.astro";
+import { ui, themes, contact, type Lang } from "../data/i18n";
+import { pageProjects } from "../data/index";
+import type { Project } from "../data/types";
+
+interface Props { lang: Lang; project: Project }
+const { lang, project: p } = Astro.props;
+const t = ui[lang];
+const other = lang === "pt" ? "en" : "pt";
+const x = p[lang];
+const path = `${t.projectBase}${p.slug}/`;
+const altPath = `${ui[other].projectBase}${p.slug}/`;
+const i = pageProjects.findIndex((q) => q.slug === p.slug);
+const prev = pageProjects[(i - 1 + pageProjects.length) % pageProjects.length];
+const next = pageProjects[(i + 1) % pageProjects.length];
+const homeIndex = `${t.home}#${lang === "pt" ? "projetos" : "projects"}`;
+const stage = JSON.stringify([{ kind: p.object, color: p.color, slug: p.slug, href: path, title: x.title }]);
+---
+<Base lang={lang} title={`${x.title} · Bruno Strapazzon`} description={x.summary} path={path} altPath={altPath} ogImage={`/generated/og/${p.slug}-${lang}.png`} ogAlt={`${x.title}: ${x.headline}`}>
+  <link slot="head" rel="preload" as="image" type="image/webp" imagesrcset={`/generated/covers/${p.slug}-800.webp 800w, /generated/covers/${p.slug}-1600.webp 1600w`} imagesizes="(min-width: 1440px) 1320px, 94vw" fetchpriority="high" />
+  <article style={`--pc:${p.color};--po:${p.onColor}`}>
+    <header class="p-hero wrap">
+      <a class="back" href={homeIndex}><Icon name="back" />{t.project.back}</a>
+      <h1 class="p-title" translate="no" style={`view-transition-name: t-${p.slug}`}>{x.title}</h1>
+      <p class="p-headline" data-reveal>{x.headline}</p>
+      <ul class="p-meta" aria-label={t.project.context} data-reveal>
+        <li>{x.context}</li>
+        {p.themes.map((k) => <li>{themes[k][lang]}</li>)}
+      </ul>
+      <div class="p-stage">
+        <img src={`/generated/covers/${p.slug}-1600.webp`} srcset={`/generated/covers/${p.slug}-800.webp 800w, /generated/covers/${p.slug}-1600.webp 1600w`} sizes="(min-width: 1440px) 1320px, 94vw" alt="" width="1600" height="1000" fetchpriority="high" />
+        <div class="stage-slot" data-stage="single" data-objects={stage}></div>
+      </div>
+    </header>
+
+    <div class="wrap p-body">
+      <p class="p-intro" data-reveal>{x.intro}</p>
+      {x.role && <p class="p-role" data-reveal><strong>{t.project.role}:</strong> {x.role}</p>}
+      {x.figures && (
+        <dl class="p-figures" data-reveal>
+          {x.figures.map((f) => <div><dt data-count>{f.value}</dt><dd>{f.label}</dd></div>)}
+        </dl>
+      )}
+      {x.proofs && (
+        <div class="p-proofs" data-reveal>
+          <p>{t.project.proofs}</p>
+          <ul>{x.proofs.map((l) => <li><a class="link" href={l.href} rel="noopener">{l.label}<Icon name="external" /></a></li>)}</ul>
+        </div>
+      )}
+      <div class="p-notes" data-reveal-group>
+        {x.notes.map((n) => <section class="p-note" data-reveal="pop"><h2>{n.h}</h2><p>{n.p}</p></section>)}
+      </div>
+
+      {p.demo && <Demo lang={lang} />}
+
+      {x.shots && (
+        <div class="shots" data-reveal-group>
+          {x.shots.map((s) => (
+            <div class="shot" data-reveal>
+              <h2>{s.title}<span class="mono">{s.file}</span></h2>
+              <p>{s.text}</p>
+              <a class="shot-frame" href={`/img/${s.name}-1400.webp`} aria-label={t.project.screenshotOpen(s.title.toLowerCase())}>
+                <img src={`/img/${s.name}-800.webp`} srcset={`/img/${s.name}-800.webp 800w, /img/${s.name}-1400.webp 1400w`} sizes="(min-width: 720px) 45vw, 92vw" width={s.w} height={s.h} loading="lazy" decoding="async" alt={s.alt} />
+              </a>
+            </div>
+          ))}
+        </div>
+      )}
+      {x.shotsNote && <p class="shots-note">{x.shotsNote}</p>}
+
+      {x.links.length > 0 && (
+        <div class="p-links" data-reveal>
+          {x.links.map((l) => <a class={l.primary ? "btn" : "btn btn-ghost"} href={l.href} rel="noopener">{l.label}<Icon name="external" /></a>)}
+        </div>
+      )}
+    </div>
+
+    <section class="p-cta" aria-labelledby="p-cta-title">
+      <div class="wrap">
+        <h2 id="p-cta-title">{t.projectCta}</h2>
+        <div class="p-cta-actions">
+          <a class="btn" href={`mailto:${contact.email}`}><Icon name="mail" />{t.ctaEmail}</a>
+          <a class="btn btn-ghost" href={contact.whatsapp} rel="noopener"><Icon name="chat" />{t.ctaWhats}</a>
+          <a class="btn btn-ghost" href={t.cvHref} type="application/pdf"><Icon name="download" />{t.ctaCv}</a>
+        </div>
+      </div>
+    </section>
+
+    <nav class="p-next" aria-label={lang === "pt" ? "Outros projetos" : "Other projects"}>
+      <div class="wrap">
+        <a href={`${t.projectBase}${prev.slug}/`} style={`--nc:${prev.color}`}><span>{t.project.prev}</span><strong>{prev[lang].title}</strong></a>
+        <a href={`${t.projectBase}${next.slug}/`} style={`--nc:${next.color}`}><span>{t.project.next}</span><strong>{next[lang].title}</strong></a>
+      </div>
+    </nav>
+  </article>
+
+  {x.shots && (
+    <dialog class="viewer" aria-label={x.title}>
+      <button class="icon-btn" type="button" aria-label={t.project.close}><Icon name="close" /></button>
+    </dialog>
+  )}
+</Base>

@@ -1,0 +1,111 @@
+---
+import "../styles/global.css";
+import Icon from "../components/Icon.astro";
+import { ui, type Lang } from "../data/i18n";
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+  path: string;          // this page, e.g. /projetos/netdoctor/
+  altPath: string;       // the same page in the other language
+  ogImage: string;       // absolute path under the site
+  ogAlt: string;
+  home?: boolean;        // nav links point at sections of this page
+  enter?: boolean;       // run the name entrance
+  jsonLd?: object;
+}
+const { lang, title, description, path, altPath, ogImage, ogAlt, home = false, enter = false, jsonLd } = Astro.props;
+const t = ui[lang];
+const site = "https://brunostrapazzon.github.io";
+const ptPath = lang === "pt" ? path : altPath;
+const enPath = lang === "en" ? path : altPath;
+const homeHref = t.home;
+const sec = (id: string) => (home ? `#${id}` : `${homeHref}#${id}`);
+const ids = lang === "pt" ? { projects: "projetos", about: "sobre", contact: "contato" } : { projects: "projects", about: "about", contact: "contact" };
+---
+<!doctype html>
+<html lang={t.htmlLang} class={enter ? "js-enter" : undefined}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={site + path} />
+  <link rel="alternate" hreflang="pt-BR" href={site + ptPath} />
+  <link rel="alternate" hreflang="en" href={site + enPath} />
+  <link rel="alternate" hreflang="x-default" href={site + ptPath} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content={t.ogLocale} />
+  <meta property="og:url" content={site + path} />
+  <meta property="og:image" content={site + ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={ogAlt} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content={site + ogImage} />
+  <meta name="theme-color" content="#f3f4f7" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/fonts/mona-sans-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/inter-tight-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <script is:inline>
+    (function () {
+      var r = document.documentElement, t = null;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (t === "light" || t === "dark") r.setAttribute("data-theme", t);
+      var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (still) r.classList.remove("js-enter");
+      // Entrances are armed only if the page script can run them; it confirms with "anim-ok".
+      if (!still && "IntersectionObserver" in window) {
+        r.classList.add("anim");
+        setTimeout(function () { if (!r.classList.contains("anim-ok")) r.classList.remove("anim", "js-enter"); }, 3000);
+      }
+    })();
+  </script>
+  {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  <slot name="head" />
+</head>
+<body>
+  <a class="skip" href="#conteudo">{t.skip}</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href={homeHref} aria-label={`Bruno Strapazzon, ${t.role}`}>
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="var(--ink)" /><rect x="7" y="7" width="8" height="8" rx="2.5" fill="var(--blue)" /><rect x="17" y="7" width="8" height="8" rx="4" fill="var(--green)" /><rect x="7" y="17" width="8" height="8" rx="4" fill="var(--yellow)" /><rect x="17" y="17" width="8" height="8" rx="2.5" fill="var(--pink)" /></svg>
+        <span class="brand-name">Bruno Strapazzon</span>
+      </a>
+      <nav class="nav" id="menu" aria-label={lang === "pt" ? "Principal" : "Main"}>
+        <a href={sec(ids.projects)}>{t.nav.projects}</a>
+        <a href={sec(ids.about)}>{t.nav.about}</a>
+        <a href={sec(ids.contact)}>{t.nav.contact}</a>
+      </nav>
+      <div class="tools">
+        <a class="icon-btn" href={altPath} hreflang={lang === "pt" ? "en" : "pt-BR"} lang={lang === "pt" ? "en" : "pt-BR"} aria-label={`${t.otherLabel}, ${t.otherName}`}>{t.otherLabel}</a>
+        <button class="icon-btn theme-btn" type="button" data-theme-toggle aria-label={t.themeToDark}>
+          <span class="sun"><Icon name="sun" /></span><span class="moon"><Icon name="moon" /></span>
+        </button>
+        <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-open={t.nav.menu} data-close={t.nav.close}>
+          <span class="label">{t.nav.menu}</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <slot />
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>{t.footer.updated} <a class="link" href="https://github.com/brunostrapazzon/brunostrapazzon.github.io">{t.footer.source}</a>.</p>
+      <p lang={lang === "pt" ? "en" : "pt-BR"}>{t.footer.also} <a class="link" href={altPath} hreflang={lang === "pt" ? "en" : "pt-BR"}>{t.footer.alsoLink}</a>.</p>
+    </div>
+  </footer>
+  <p class="sr-only" aria-live="polite" data-copy-status></p>
+  <script>
+    import "../scripts/site.ts";
+  </script>
+</body>
+</html>
