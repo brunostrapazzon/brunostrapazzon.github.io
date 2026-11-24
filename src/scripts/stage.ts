@@ -211,7 +211,7 @@ class BigView {
       this.tip.style.setProperty("--tc", it ? it.spec.color : "transparent");
       this.tip.toggleAttribute("data-on", !!it);
     }
-    if (it && !reduce.matches) { it.hopV = Math.max(it.hopV, 0.09); it.spin += 0.18; }
+    if (it && !reduce.matches) { it.hopV = Math.max(it.hopV, 0.05); it.spin += 0.1; }
   }
 
   toScreen(v: Vector3) {
@@ -232,8 +232,8 @@ class BigView {
       o.visible = it.shadow.visible = it.size > 0;
       if (!o.visible) continue;
       // entrance
-      if (!still && it.appear < 1 && now - this.started > it.delay) it.appear = Math.min(1, it.appear + dt * 2.2);
-      const a = still ? 1 : easeOutBack(it.appear);
+      if (!still && it.appear < 1 && now - this.started > it.delay) it.appear = Math.min(1, it.appear + dt * 1.2);
+      const a = still ? 1 : 1 - Math.pow(1 - it.appear, 4);
 
       if (this.mode === "hero") {
         // pointer repels a little; a spring brings it home
@@ -241,21 +241,21 @@ class BigView {
           const dx = it.home.x + it.off.x - px, dy = it.home.y + it.off.y - py;
           const d = Math.hypot(dx, dy), R = it.size * 2.2;
           if (d < R && d > 0.0001) {
-            const k = (1 - d / R) * 0.9;
+            const k = (1 - d / R) * 0.45;
             it.vel.x += (dx / d) * k * dt * 10; it.vel.y += (dy / d) * k * dt * 10;
           }
         }
-        it.vel.addScaledVector(it.off, -dt * 9);
-        it.vel.multiplyScalar(Math.pow(0.02, dt));
+        it.vel.addScaledVector(it.off, -dt * 5);
+        it.vel.multiplyScalar(Math.pow(0.006, dt));
         it.off.addScaledVector(it.vel, dt * 6);
         // hop
         it.hopV -= dt * 1.1; it.hop = Math.max(0, it.hop + it.hopV * dt * 12); if (it.hop === 0) it.hopV = Math.max(0, it.hopV);
-        const bob = still ? 0 : Math.sin(t * 1.3 + it.phase) * it.size * 0.08;
+        const bob = still ? 0 : Math.sin(t * 0.9 + it.phase) * it.size * 0.06;
         o.position.set(it.home.x + it.off.x, it.home.y + it.off.y + bob + it.hop * it.size, 0);
         placeShadow(it.shadow, o.position.x, it.home.y + it.off.y - it.size * 1.25, it.size * a, (bob + it.hop * it.size) / it.size + 0.08);
         it.spin *= Math.pow(0.15, dt);
-        o.rotation.y = (still ? 0.5 : t * 0.35 + it.phase) + it.spin * 6;
-        o.rotation.x = still ? -0.12 : Math.sin(t * 0.8 + it.phase) * 0.18 + (this.pointer.inside ? (py - o.position.y) * -0.03 : 0);
+        o.rotation.y = (still ? 0.5 : t * 0.22 + it.phase) + it.spin * 4;
+        o.rotation.x = still ? -0.12 : Math.sin(t * 0.6 + it.phase) * 0.12 + (this.pointer.inside ? (py - o.position.y) * -0.03 : 0);
         o.rotation.z = Math.sin(t * 0.6 + it.phase * 2) * (still ? 0 : 0.08);
         // hover pick in screen space
         const s = this.toScreen(o.position);
@@ -269,8 +269,8 @@ class BigView {
         o.position.set(0, lift * it.size, 0);
         placeShadow(it.shadow, 0, -it.size * 1.3, it.size * a, lift + 0.05);
       }
-      it.hover += ((this.hovered === it ? 1 : 0) - it.hover) * Math.min(1, dt * 10);
-      o.scale.setScalar(it.size * a * (1 + it.hover * 0.14));
+      it.hover += ((this.hovered === it ? 1 : 0) - it.hover) * Math.min(1, dt * 5);
+      o.scale.setScalar(it.size * a * (1 + it.hover * 0.1));
       tick(o, t, still);
     }
     if (this.mode === "hero") {
@@ -334,7 +334,7 @@ class Thumbs {
     for (const r of this.rows) {
       if (!r.visible || (still && r.drawn)) continue;
       r.spin *= Math.pow(0.2, dt);
-      const speed = r.hot ? 1.6 : 0.35;
+      const speed = r.hot ? 1 : 0.25;
       r.obj.rotation.y = still ? 0.6 : r.obj.rotation.y + dt * speed + r.spin * dt * 8;
       r.obj.rotation.x = -0.18 + (still ? 0 : Math.sin(t + r.obj.id) * 0.08);
       r.obj.position.y = still ? 0.1 : Math.sin(t * 1.4 + r.obj.id) * 0.06 + r.hot * 0.22 + 0.1;
@@ -346,11 +346,6 @@ class Thumbs {
       r.drawn = true;
     }
   }
-}
-
-function easeOutBack(x: number) {
-  const c1 = 1.70158, c3 = c1 + 1;
-  return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
 }
 
 export function start() {

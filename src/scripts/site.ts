@@ -73,8 +73,8 @@ if (name) {
       const s = document.createElement("span");
       s.className = "ch";
       s.textContent = ch;
-      s.style.setProperty("--d", `${i * 38}ms`);
-      s.style.setProperty("--dy", `${(((i * 37) % 9) - 4) * 0.045}em`);
+      s.style.setProperty("--d", `${i * 45}ms`);
+      s.style.setProperty("--dy", `${(((i * 37) % 9) - 4) * 0.025}em`);
       line.append(s);
       i++;
     }
@@ -98,9 +98,9 @@ if (name) {
       chars.forEach((c, k) => {
         const r = rects[k]; if (!r) return;
         const d = Math.hypot(r.left + r.width / 2 - px, r.top + r.height / 2 - py);
-        const f = Math.max(0, 1 - d / 260);
-        c.style.setProperty("--w", (125 - f * 50).toFixed(1));
-        c.style.setProperty("--g", (800 + f * 100).toFixed(0));
+        const f = Math.max(0, 1 - d / 340) ** 2;
+        c.style.setProperty("--w", (125 - f * 32).toFixed(1));
+        c.style.setProperty("--g", (800 + f * 60).toFixed(0));
       });
     };
     name.closest(".hero")?.addEventListener("pointerenter", measure);
