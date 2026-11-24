@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://brunostrapazzon.github.io/sitemap.xml
